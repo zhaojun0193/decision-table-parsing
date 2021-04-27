@@ -19,9 +19,9 @@ import java.util.Iterator;
 @Slf4j
 public class FileProcessing {
 
-    public static String RULE_PROJECT_PATH = "C:\\Users\\zxcl06\\Desktop\\关于年度自核及管控规则的梳理";
+    public static String RULE_PROJECT_PATH = "C:\\Users\\hasee\\Desktop\\年度测试";
 
-    public static String TARGET_PATH = "C:\\Users\\zxcl06\\Desktop\\输出";
+    public static String TARGET_PATH = "C:\\Users\\hasee\\Desktop\\输出";
 
     public static void main(String[] args) throws IOException {
         IOFileFilter fileFilter = new RegexFileFilter(".*.dta");
@@ -30,19 +30,23 @@ public class FileProcessing {
                 fileFilter, DirectoryFileFilter.DIRECTORY);
         while (fileIterator.hasNext()){
             File file = fileIterator.next();
+//            System.out.println(file.getAbsolutePath());
+
+            System.out.println(file.getParentFile().getName());
             // 先创建文件夹
-            File tartFile = new File(TARGET_PATH);
+//            File tartFile = new File(TARGET_PATH);
+//
+//            if(RULE_PROJECT_PATH.equals(TARGET_PATH)){
+//                throw new IllegalArgumentException("项目目录与输出目录不能一样");
+//            }
+//
+//            if (!tartFile.exists()) {
+//                boolean mk = tartFile.mkdirs();
+//            }
 
-            if(RULE_PROJECT_PATH.equals(TARGET_PATH)){
-                throw new IllegalArgumentException("项目目录与输出目录不能一样");
-            }
-
-            if (!tartFile.exists()) {
-                boolean mk = tartFile.mkdirs();
-            }
 
             //TODO 复制文件夹
-            FileUtils.copyFileToDirectory(file, tartFile);
+
         }
     }
 }

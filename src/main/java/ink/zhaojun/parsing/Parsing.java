@@ -2,6 +2,7 @@ package ink.zhaojun.parsing;
 
 import ink.zhaojun.domain.Contents;
 import ink.zhaojun.domain.DataTableHead;
+import ink.zhaojun.parsing.result.Result;
 import ink.zhaojun.utils.RegexUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -17,7 +18,7 @@ import java.util.*;
 public class Parsing {
 
     @SuppressWarnings("unchecked")
-    public void parsing(String path) throws DocumentException {
+    public Result parsing(String path) throws DocumentException {
         SAXReader saxReader = new SAXReader();
 
         Document document = saxReader.read(new File(path));
@@ -84,8 +85,10 @@ public class Parsing {
         log.info("开始解析内容");
         contentParsing(contents, contentsList);
         log.info("解析内容结束");
-
-        log.info("开始生成文件");
+        Result result = new Result();
+        result.setDataTableHeadHashMap(dataTableHeadHashMap);
+        result.setContentsList(contentsList);
+        return result;
     }
 
     /**

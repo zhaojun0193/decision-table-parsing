@@ -4,120 +4,129 @@
   <uuid>ef87a2be-a0a0-4e03-b8ee-ef059deba970</uuid>
   <locale>zh_CN</locale>
   <definition>
-<DT xmlns="http://schemas.ilog.com/Rules/7.0/DecisionTable" Version="7.0">
-  <Body>
-    <Structure>
-      <ConditionDefinitions>
-        <ConditionDefinition Id="C0">
-          <ExpressionDefinition>
-            <Text><![CDATA['保单' 的基本信息的机构代码不以<一个 字符串> 开始]]></Text>
-          </ExpressionDefinition>
-        </ConditionDefinition>
-        <ConditionDefinition Id="C1">
-          <ExpressionDefinition>
-            <Text><![CDATA[util. 机构与新转续判断( <一些 字符串> , <一些 字符串> , '保单'  )]]></Text>
-          </ExpressionDefinition>
-        </ConditionDefinition>
-        <ConditionDefinition Id="C2">
-          <ExpressionDefinition>
-            <Text><![CDATA['保单' 的投保车辆 的新车购置价 等于<一个 数字>]]></Text>
-          </ExpressionDefinition>
-        </ConditionDefinition>
-      </ConditionDefinitions>
-      <ActionDefinitions>
-        <ActionDefinition Id="A0">
-          <ExpressionDefinition>
-            <Text><![CDATA['核保结果' . 设置新执行结果( <一个 字符串> , "2" , <一个 字符串> , 'index'  , '每次循环的规则集' 的业务类型  , '每次循环的规则集' 的countId , '总规则参数集' 的 禁用编码列表 )]]></Text>
-          </ExpressionDefinition>
-        </ActionDefinition>
-      </ActionDefinitions>
-    </Structure>
-    <Contents>
-      <Partition DefId="C0">
-        <Condition>
-          <Expression>
-            <Param><![CDATA["211"]]></Param>
-          </Expression>
-          <Partition DefId="C1">
+    <DT xmlns="http://schemas.ilog.com/Rules/7.0/DecisionTable" Version="7.0">
+      <Body>
+        <Structure>
+          <ConditionDefinitions>
+            <ConditionDefinition Id="C0">
+              <ExpressionDefinition>
+                <Text><![CDATA['保单' 的基本信息的机构代码不以<一个 字符串> 开始]]></Text>
+              </ExpressionDefinition>
+            </ConditionDefinition>
+            <ConditionDefinition Id="C1">
+              <ExpressionDefinition>
+                <Text><![CDATA[util. 机构与新转续判断( <一些 字符串> , <一些 字符串> , '保单'  )]]></Text>
+              </ExpressionDefinition>
+            </ConditionDefinition>
+            <ConditionDefinition Id="C2">
+              <ExpressionDefinition>
+                <Text><![CDATA['保单' 的投保车辆 的新车购置价 等于<一个 数字>]]></Text>
+              </ExpressionDefinition>
+            </ConditionDefinition>
+          </ConditionDefinitions>
+          <ActionDefinitions>
+            <ActionDefinition Id="A0">
+              <ExpressionDefinition>
+                <Text><![CDATA['核保结果' . 设置新执行结果( <一个 字符串> , "2" , <一个 字符串> , 'index'  , '每次循环的规则集' 的业务类型  , '每次循环的规则集' 的countId , '总规则参数集' 的 禁用编码列表 )]]></Text>
+              </ExpressionDefinition>
+            </ActionDefinition>
+          </ActionDefinitions>
+        </Structure>
+        <Contents>
+          <Partition DefId="C0">
             <Condition>
               <Expression>
-                <Param><![CDATA[{ "211" }]]></Param>
-                <Param><![CDATA[{ "1" }]]></Param>
+                <Param><![CDATA["211"]]></Param>
               </Expression>
-              <Partition DefId="C2">
+              <Partition DefId="C1">
                 <Condition>
                   <Expression>
-                    <Text><![CDATA[<一个 数字>大于<一个 数字>]]></Text>
-                    <Param><![CDATA[30000]]></Param>
+                    <Param><![CDATA[{ "211" }]]></Param>
+                    <Param><![CDATA[{ "1" }]]></Param>
                   </Expression>
-                  <ActionSet>
-                    <Action DefId="A0">
+                  <Partition DefId="C2">
+                    <Condition>
                       <Expression>
-                        <Param><![CDATA["GX_001"]]></Param>
-                        <Param><![CDATA["测试规则"]]></Param>
+                        <Text><![CDATA[<一个 数字>大于<一个 数字>]]></Text>
+                        <Param><![CDATA[30000]]></Param>
                       </Expression>
-                    </Action>
-                  </ActionSet>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA["GX_001"]]></Param>
+                            <Param><![CDATA["测试规则"]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
                 </Condition>
               </Partition>
             </Condition>
-          </Partition>
-        </Condition>
-        <Condition>
-          <Expression>
-            <Param><![CDATA["251"]]></Param>
-          </Expression>
-          <Partition DefId="C1">
             <Condition>
-              <Expression>
-                <Param><![CDATA[{ "215" }]]></Param>
-                <Param><![CDATA[{ "2" }]]></Param>
-              </Expression>
-              <Partition DefId="C2">
-                <Condition>
-                  <Expression>
-                    <Text><![CDATA[<一个 数字>小于等于<一个 数字>]]></Text>
-                    <Param><![CDATA[699]]></Param>
-                  </Expression>
-                  <ActionSet>
-                    <Action DefId="A0">
-                      <Expression>
-                        <Param><![CDATA["GX_002"]]></Param>
-                        <Param><![CDATA["测试规则2"]]></Param>
-                      </Expression>
-                    </Action>
-                  </ActionSet>
-                </Condition>
-              </Partition>
-            </Condition>
-          </Partition>
-        </Condition>
-        <Condition>
-          <Expression/>
-          <ActionSet>
-            <Action DefId="A0">
               <Expression/>
-            </Action>
-          </ActionSet>
-        </Condition>
-      </Partition>
-    </Contents>
-  </Body>
-  <Resources DefaultLocale="zh_CN">
-    <ResourceSet Locale="zh_CN">
-      <Data Name="Definitions(A0)#HeaderText"><![CDATA[设置核保结果]]></Data>
-      <Data Name="Definitions(A0)#Width"><![CDATA[341]]></Data>
-      <Data Name="Definitions(A0)[0]#HeaderText"><![CDATA[规则编号]]></Data>
-      <Data Name="Definitions(A0)[1]#HeaderText"><![CDATA[核保意见]]></Data>
-      <Data Name="Definitions(C0)#HeaderText"><![CDATA[机构代码不包含]]></Data>
-      <Data Name="Definitions(C0)#Width"><![CDATA[342]]></Data>
-      <Data Name="Definitions(C1)#HeaderText"><![CDATA[机构与新转续判断]]></Data>
-      <Data Name="Definitions(C1)#Width"><![CDATA[342]]></Data>
-      <Data Name="Definitions(C1)[0]#HeaderText"><![CDATA[机构]]></Data>
-      <Data Name="Definitions(C1)[1]#HeaderText"><![CDATA[新转续标志]]></Data>
-      <Data Name="Definitions(C2)#HeaderText"><![CDATA[新车购置价]]></Data>
-      <Data Name="Definitions(C2)#Width"><![CDATA[342]]></Data>
-    </ResourceSet>
-  </Resources>
-</DT></definition>
+              <Partition DefId="C1">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "261" }]]></Param>
+                    <Param><![CDATA[{ "3" }]]></Param>
+                  </Expression>
+                  <Partition DefId="C2">
+                    <Condition>
+                      <Expression>
+                        <Param><![CDATA[300]]></Param>
+                      </Expression>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA["GX_003"]]></Param>
+                            <Param><![CDATA["测试规则3"]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+            <Condition>
+              <Expression>
+                <Param><![CDATA["221"]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[10]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["GX_004"]]></Param>
+                        <Param><![CDATA["测试规则4"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Contents>
+      </Body>
+      <Resources DefaultLocale="zh_CN">
+        <ResourceSet Locale="zh_CN">
+          <Data Name="Definitions(A0)#HeaderText"><![CDATA[设置核保结果]]></Data>
+          <Data Name="Definitions(A0)#Width"><![CDATA[341]]></Data>
+          <Data Name="Definitions(A0)[0]#HeaderText"><![CDATA[规则编号]]></Data>
+          <Data Name="Definitions(A0)[1]#HeaderText"><![CDATA[核保意见]]></Data>
+          <Data Name="Definitions(C0)#HeaderText"><![CDATA[机构代码不包含]]></Data>
+          <Data Name="Definitions(C0)#Width"><![CDATA[342]]></Data>
+          <Data Name="Definitions(C1)#HeaderText"><![CDATA[机构与新转续判断]]></Data>
+          <Data Name="Definitions(C1)#Width"><![CDATA[342]]></Data>
+          <Data Name="Definitions(C1)[0]#HeaderText"><![CDATA[机构]]></Data>
+          <Data Name="Definitions(C1)[1]#HeaderText"><![CDATA[新转续标志]]></Data>
+          <Data Name="Definitions(C2)#HeaderText"><![CDATA[新车购置价]]></Data>
+          <Data Name="Definitions(C2)#Width"><![CDATA[342]]></Data>
+        </ResourceSet>
+      </Resources>
+    </DT></definition>
 </ilog.rules.studio.model.dt:DecisionTable>

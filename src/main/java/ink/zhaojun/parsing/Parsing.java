@@ -32,9 +32,18 @@ public class Parsing {
         Element conditionDefinitions = getForTagName("ConditionDefinitions", definition);
         log.info("获取条件列定义成功");
 
+        // 条件列id集合
+        List<String> conditionIdList = getAttrList("Id",conditionDefinitions);
+
         //获取结果列定义
         Element actionDefinitions = getForTagName("ActionDefinitions", definition);
         log.info("获取结果列定义成功");
+
+        // 结果列id集合
+        List<String> actionIdList = getAttrList("Id",actionDefinitions);
+
+        // 合并id集合
+        conditionIdList.addAll(actionIdList);
 
         //获取内容
         Element contents = getForTagName("Contents", definition);
@@ -55,6 +64,10 @@ public class Parsing {
             String definitionsId = RegexUtil.getRegexStr(attributeName, "[A-Z]\\d+");
             String type = RegexUtil.getRegexStr(attributeName, "\\[*\\d*\\]*\\#(\\w+)");
             String text = element.getText();
+
+            if (type.contains("Height")) {
+                continue;
+            }
 
             if (!dataTableHeadHashMap.containsKey(definitionsId)) {
                 DataTableHead dataTableHead = new DataTableHead();
@@ -86,14 +99,14 @@ public class Parsing {
         contentParsing(contents, contentsList);
         log.info("解析内容结束");
         Result result = new Result();
-        result.setDataTableHeadHashMap(dataTableHeadHashMap);
+        List<Map.Entry<String, DataTableHead>> sortHeadMap = sortHeadMap(dataTableHeadHashMap, conditionIdList);
+        result.setDataTableHeadHashMap(sortHeadMap);
         result.setContentsList(contentsList);
         return result;
     }
 
     /**
      * 内容解析
-     *
      * @param contentsElement
      */
     @SuppressWarnings("unchecked")
@@ -120,7 +133,6 @@ public class Parsing {
 
             //条件列
             List<Element> paramElementList = expression.elements("Param");
-            if (paramElementList.isEmpty()) return;
             List<String> paramList = new ArrayList<>();
             for (Element parEle : paramElementList) {
                 paramList.add(parEle.getText());
@@ -169,5 +181,42 @@ public class Parsing {
             }
         }
         return null;
+    }
+
+    /**
+     * 获取指定的属性集合
+     * @param attr
+     * @param element
+     * @return
+     */
+    private List<String> getAttrList(String attr, Element element) {
+        List<String> attrList = new ArrayList<>();
+        if(Objects.isNull(element)){
+            return attrList;
+        }
+        List<Element> elements = element.elements();
+        for (Element e : elements) {
+            attrList.add(e.attribute(attr).getValue());
+        }
+        return attrList;
+    }
+
+    /**
+     * 对表头进行排序
+     * @param dataTableHeadHashMap
+     * @param orderList
+     * @return
+     */
+    public List<Map.Entry<String, DataTableHead>> sortHeadMap(Map<String, DataTableHead> dataTableHeadHashMap,List<String> orderList){
+        List<Map.Entry<String, DataTableHead>> originalHeadList = new ArrayList<>(dataTableHeadHashMap.entrySet());
+        List<Map.Entry<String, DataTableHead>> sortHeadList = new ArrayList<>();
+        for (String orderId : orderList) {
+            for (Map.Entry<String, DataTableHead> headEntry : originalHeadList) {
+                if(orderId.equals(headEntry.getKey())){
+                    sortHeadList.add(headEntry);
+                }
+            }
+        }
+        return sortHeadList;
     }
 }

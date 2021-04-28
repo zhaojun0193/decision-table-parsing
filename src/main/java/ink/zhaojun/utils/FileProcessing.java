@@ -19,9 +19,9 @@ import java.util.Iterator;
 @Slf4j
 public class FileProcessing {
 
-    public static String RULE_PROJECT_PATH = "C:\\Users\\hasee\\Desktop\\年度测试";
+    public static String RULE_PROJECT_PATH = "C:\\Users\\zxcl06\\Desktop\\关于年度自核及管控规则的梳理";
 
-    public static String TARGET_PATH = "C:\\Users\\hasee\\Desktop\\输出";
+    public static String TARGET_PATH = "C:\\Users\\zxcl06\\Desktop\\输出";
 
     public static void main(String[] args) throws IOException {
         IOFileFilter fileFilter = new RegexFileFilter(".*.dta");

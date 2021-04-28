@@ -17,7 +17,7 @@ public class Result {
     /**
      * 表头
      */
-    private Map<String, DataTableHead> dataTableHeadHashMap;
+    private List<Map.Entry<String, DataTableHead>> dataTableHeadHashMap;
 
     /**
      * 内容

@@ -1,7 +1,9 @@
+import com.alibaba.excel.EasyExcel;
 import ink.zhaojun.domain.Contents;
 import ink.zhaojun.domain.DataTableHead;
 import ink.zhaojun.parsing.Parsing;
 import ink.zhaojun.parsing.result.Result;
+import org.apache.commons.lang3.StringUtils;
 import org.dom4j.DocumentException;
 import org.junit.Test;
 
@@ -12,49 +14,27 @@ import java.util.regex.Pattern;
 
 public class RegexTest {
 
-    @Test
-    public void filename() {
-//        Pattern pattern = Pattern.compile("^\\w+.dta$");
-////        Pattern pattern = Pattern.compile("黑龙江见费出单决策表.dta");
-//
-//        Matcher matcher = pattern.matcher("黑龙江见费出单决策表.dta");
-//
-//        System.out.println(matcher.matches());
-
-
-        //创建指定匹配规则的模型
-        Pattern pattern = Pattern.compile(".*.dta");
-//创建匹配器
-        Matcher matcher = pattern.matcher("黑龙江见费出单决策表.dta");
-
-        if (matcher.matches()) {
-            System.out.println(matcher.start() + " " + matcher.end() + " " + matcher.group());
-        } else {
-            System.out.println("没有匹配到！");
-
-        }
-    }
+    private Map<String, Integer> headContentMapper = new LinkedHashMap<>();
 
     @Test
     public void noModelWrite() throws DocumentException {
         // 写法1
-        String fileName = "C:\\Users\\zxcl06\\Desktop\\输出\\" + "noModelWrite" + System.currentTimeMillis() + ".xlsx";
-        // 这里 需要指定写用哪个class去写，然后写到第一个sheet，名字为模板 然后文件流会自动关闭
-//        EasyExcel.write(fileName).head(head()).sheet("模板").doWrite(dataList());
-        head();
-    }
-
-    public List<List<String>> head() throws DocumentException {
 
         Parsing parsing = new Parsing();
-        Result result = parsing.parsing("D:\\IDEAWorkSpace\\decision-table-parsing\\src\\main\\resources\\test.dta");
+        Result result = parsing.parsing("E:\\workspace\\idea\\decision-table-parsing\\src\\main\\resources\\test2.dta");
 
         List<Map.Entry<String, DataTableHead>> sortHeadList = result.getDataTableHeadHashMap();
         List<Contents> contentsList = result.getContentsList();
 
+        String fileName = "C:\\Users\\hasee\\Desktop\\输出\\" + "noModelWrite" + System.currentTimeMillis() + ".xlsx";
+        // 这里 需要指定写用哪个class去写，然后写到第一个sheet，名字为模板 然后文件流会自动关闭
+        EasyExcel.write(fileName).head(head(sortHeadList)).sheet("模板").doWrite(dataList(sortHeadList,contentsList));
+//        head();
+    }
 
+    public List<List<String>> head(List<Map.Entry<String, DataTableHead>> sortHeadList) throws DocumentException {
         List<List<String>> headList = new ArrayList<>();
-        Map<String, Integer> headContentMapper = new LinkedHashMap<>();
+        headContentMapper = new LinkedHashMap<>();
         for (
                 Map.Entry<String, DataTableHead> stringDataTableHeadEntry : sortHeadList) {
             DataTableHead dataTableHead = stringDataTableHeadEntry.getValue();
@@ -76,47 +56,60 @@ public class RegexTest {
             }
         }
 
-        //先根据结果列拆分列表
-        String lastActionId = sortHeadList.get(sortHeadList.size() - 1).getKey();
-        List<List<Contents>> lineContentsList = new ArrayList<>();
-        int formIndex = 0;
-        for (int i = 0; i < contentsList.size(); i++) {
-            if (contentsList.get(i).getDefId().equals(lastActionId)) {
-                List<Contents> lineList = contentsList.subList(formIndex, ++i);
-                lineContentsList.add(lineList);
-                formIndex = i++;
-            }
-        }
-
-
-        //列
-        List<List<Object>> list = new ArrayList<>();
-        for (List<Contents> lineContents : lineContentsList) {
-            List<Object> data = new ArrayList<>();
-            List<Contents> contentsList1 = fillLineContents(headContentMapper, lineContents);
-            System.out.println(contentsList1);
-        }
-
-
         return headList;
     }
 
+    /**
+     * 填充空缺
+     *
+     * @param headContentMapper
+     * @param lineContents
+     * @return
+     */
     private List<Contents> fillLineContents(Map<String, Integer> headContentMapper, List<Contents> lineContents) {
         List<Contents> result = new ArrayList<>();
         AtomicInteger index = new AtomicInteger();
         headContentMapper.forEach((id, count) -> {
             if (lineIdContains(lineContents, id)) {
-                Contents content = lineContents.get(index.get());
+                Contents content = getById(id, lineContents);
+                assert content != null;
+                if (content.getParamList().isEmpty()) {
+                    List<String> paramList = new ArrayList<>();
+                    for (int i = 0; i < count; i++) {
+                        paramList.add(StringUtils.EMPTY);
+                    }
+                    content.setParamList(paramList);
+                }
                 result.add(content);
             } else {
                 Contents content = new Contents();
                 content.setDefId(id);
-                content.setParamList(new ArrayList<>());
+                List<String> paramList = new ArrayList<>();
+                for (int i = 0; i < count; i++) {
+                    paramList.add(StringUtils.EMPTY);
+                }
+                content.setParamList(paramList);
                 result.add(content);
             }
             index.getAndIncrement();
         });
         return result;
+    }
+
+    /**
+     * 通过id获取contents
+     *
+     * @param id
+     * @param contentsList
+     * @return
+     */
+    private Contents getById(String id, List<Contents> contentsList) {
+        for (Contents contents : contentsList) {
+            if (id.equals(contents.getDefId())) {
+                return contents;
+            }
+        }
+        return null;
     }
 
     private boolean lineIdContains(List<Contents> lineContents, String id) {
@@ -128,14 +121,28 @@ public class RegexTest {
     }
 
 
-    private List<List<Object>> dataList() {
-        List<List<Object>> list = new ArrayList<List<Object>>();
-        for (int i = 0; i < 10; i++) {
-            List<Object> data = new ArrayList<Object>();
-            data.add("字符串2" + i);
-            data.add("字符串3" + i);
-            data.add(new Date());
-            data.add(0.56);
+    private List<List<Object>> dataList(List<Map.Entry<String, DataTableHead>> sortHeadList,List<Contents> contentsList) {
+        //先根据结果列拆分列表
+        String lastActionId = sortHeadList.get(sortHeadList.size() - 1).getKey();
+        List<List<Contents>> lineContentsList = new ArrayList<>();
+        int formIndex = 0;
+        for (int i = 0; i < contentsList.size(); i++) {
+            if (contentsList.get(i).getDefId().equals(lastActionId)) {
+                List<Contents> lineList = contentsList.subList(formIndex, ++i);
+                lineContentsList.add(lineList);
+                formIndex = i++;
+            }
+        }
+        List<List<Object>> list = new ArrayList<>();
+        for (List<Contents> lineContents : lineContentsList) {
+            List<Object> data = new ArrayList<>();
+            List<Contents> fillLineContents = fillLineContents(headContentMapper, lineContents);
+            System.out.println(fillLineContents);
+            for (Contents fillLineContent : fillLineContents) {
+                for (String param : fillLineContent.getParamList()) {
+                    data.add(param);
+                }
+            }
             list.add(data);
         }
         return list;

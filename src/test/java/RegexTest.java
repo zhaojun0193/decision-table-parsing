@@ -21,12 +21,12 @@ public class RegexTest {
         // 写法1
 
         Parsing parsing = new Parsing();
-        Result result = parsing.parsing("E:\\workspace\\idea\\decision-table-parsing\\src\\main\\resources\\test2.dta");
+        Result result = parsing.parsing("D:\\IDEAWorkSpace\\decision-table-parsing\\src\\main\\resources\\test2.dta");
 
         List<Map.Entry<String, DataTableHead>> sortHeadList = result.getDataTableHeadHashMap();
         List<Contents> contentsList = result.getContentsList();
 
-        String fileName = "C:\\Users\\hasee\\Desktop\\输出\\" + "noModelWrite" + System.currentTimeMillis() + ".xlsx";
+        String fileName = "C:\\Users\\zxcl06\\Desktop\\输出\\" + "noModelWrite" + System.currentTimeMillis() + ".xlsx";
         // 这里 需要指定写用哪个class去写，然后写到第一个sheet，名字为模板 然后文件流会自动关闭
         EasyExcel.write(fileName).head(head(sortHeadList)).sheet("模板").doWrite(dataList(sortHeadList,contentsList));
 //        head();
@@ -147,10 +147,4 @@ public class RegexTest {
         }
         return list;
     }
-
-    @Test
-    public void str() {
-        System.out.println(new String("C10").substring(0, 1));
-    }
-
 }

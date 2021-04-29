@@ -33,14 +33,14 @@ public class Parsing {
         log.info("获取条件列定义成功");
 
         // 条件列id集合
-        List<String> conditionIdList = getAttrList("Id",conditionDefinitions);
+        List<String> conditionIdList = getAttrList("Id", conditionDefinitions);
 
         //获取结果列定义
         Element actionDefinitions = getForTagName("ActionDefinitions", definition);
         log.info("获取结果列定义成功");
 
         // 结果列id集合
-        List<String> actionIdList = getAttrList("Id",actionDefinitions);
+        List<String> actionIdList = getAttrList("Id", actionDefinitions);
 
         // 合并id集合
         conditionIdList.addAll(actionIdList);
@@ -107,6 +107,7 @@ public class Parsing {
 
     /**
      * 内容解析
+     *
      * @param contentsElement
      */
     @SuppressWarnings("unchecked")
@@ -135,7 +136,7 @@ public class Parsing {
             List<Element> paramElementList = expression.elements("Param");
             List<String> paramList = new ArrayList<>();
             for (Element parEle : paramElementList) {
-                paramList.add(parEle.getText());
+                paramList.add(formattingStr(parEle.getText()));
             }
             contents.setParamList(paramList);
             contentsList.add(contents);
@@ -151,7 +152,7 @@ public class Parsing {
                     List<Element> actionParamElementList = actionExpression.elements("Param");
                     List<String> actionParamList = new ArrayList<>();
                     for (Element parEle : actionParamElementList) {
-                        actionParamList.add(parEle.getText());
+                        actionParamList.add(formattingStr(parEle.getText()));
                     }
                     action.setParamList(actionParamList);
                     contentsList.add(action);
@@ -185,13 +186,14 @@ public class Parsing {
 
     /**
      * 获取指定的属性集合
+     *
      * @param attr
      * @param element
      * @return
      */
     private List<String> getAttrList(String attr, Element element) {
         List<String> attrList = new ArrayList<>();
-        if(Objects.isNull(element)){
+        if (Objects.isNull(element)) {
             return attrList;
         }
         List<Element> elements = element.elements();
@@ -203,20 +205,26 @@ public class Parsing {
 
     /**
      * 对表头进行排序
+     *
      * @param dataTableHeadHashMap
      * @param orderList
      * @return
      */
-    public List<Map.Entry<String, DataTableHead>> sortHeadMap(Map<String, DataTableHead> dataTableHeadHashMap,List<String> orderList){
+    public List<Map.Entry<String, DataTableHead>> sortHeadMap(Map<String, DataTableHead> dataTableHeadHashMap, List<String> orderList) {
         List<Map.Entry<String, DataTableHead>> originalHeadList = new ArrayList<>(dataTableHeadHashMap.entrySet());
         List<Map.Entry<String, DataTableHead>> sortHeadList = new ArrayList<>();
         for (String orderId : orderList) {
             for (Map.Entry<String, DataTableHead> headEntry : originalHeadList) {
-                if(orderId.equals(headEntry.getKey())){
+                if (orderId.equals(headEntry.getKey())) {
                     sortHeadList.add(headEntry);
                 }
             }
         }
         return sortHeadList;
+    }
+
+    private static String formattingStr(String str) {
+        if (StringUtils.isEmpty(str)) return str;
+        return str.replace("\"", "").replace("{", "").replace("}", "");
     }
 }

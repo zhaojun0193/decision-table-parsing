@@ -1,0 +1,756 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.dt:DecisionTable xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.dt="http://ilog.rules.studio/model/dt.ecore">
+  <name>内蒙古分公司</name>
+  <uuid>0410b132-86d2-480a-a7a8-c26a5148ffc2</uuid>
+  <locale>zh_CN</locale>
+  <definition>
+<DT xmlns="http://schemas.ilog.com/Rules/7.0/DecisionTable" Version="7.0">
+  <Body>
+    <Properties>
+      <Property Name="Check.Gap.ErrorLevel">Info</Property>
+      <Property Name="Lock.AddAction" Type="xs:boolean"><![CDATA[true]]></Property>
+      <Property Name="Lock.RemoveAction" Type="xs:boolean"><![CDATA[true]]></Property>
+      <Property Name="UI.AutoResizeTable" Type="xs:boolean"><![CDATA[false]]></Property>
+      <Property Name="edit.Check.Expression" Type="xs:boolean"><![CDATA[true]]></Property>
+      <Property Name="edit.Check.Gap" Type="xs:boolean"><![CDATA[true]]></Property>
+      <Property Name="edit.Check.Overlap" Type="xs:boolean"><![CDATA[true]]></Property>
+      <Property Name="edit.Check.Symmetry" Type="xs:boolean"><![CDATA[false]]></Property>
+      <Property Name="tmpCheck.edit.Check.Expression" Type="xs:boolean"><![CDATA[true]]></Property>
+      <Property Name="tmpCheck.edit.Check.Gap" Type="xs:boolean"><![CDATA[true]]></Property>
+      <Property Name="tmpCheck.edit.Check.Overlap" Type="xs:boolean"><![CDATA[true]]></Property>
+      <Property Name="tmpCheck.edit.Check.Symmetry" Type="xs:boolean"><![CDATA[false]]></Property>
+      <Property Name="tmplock.Lock.AddAction" Type="xs:boolean"><![CDATA[true]]></Property>
+      <Property Name="tmplock.Lock.RemoveAction" Type="xs:boolean"><![CDATA[true]]></Property>
+    </Properties>
+    <Preconditions>
+      <Text><![CDATA[如果]]>&#13;<![CDATA[
+	'保单' 的基本信息 的机构代码 不为空 ]]>&#13;<![CDATA[
+	并且 '保单' 的基本信息 的机构代码 不为空字符串 ]]>&#13;<![CDATA[
+	并且 '保单' 的基本信息 的机构代码 以 "215"   开始 ]]></Text>
+    </Preconditions>
+    <Structure>
+      <ConditionDefinitions>
+        <ConditionDefinition Id="C0">
+          <ExpressionDefinition>
+            <Text><![CDATA['保单' 的基本信息 的机构代码 以<一个 字符串> 开始]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C16">
+          <ExpressionDefinition>
+            <Text><![CDATA[util. 机构不以一些字符串开始( '保单' 的基本信息 的机构代码  , <一些 字符串> )]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C1">
+          <ExpressionDefinition>
+            <Text><![CDATA['动态域类' 的产品代码 是<一些 产品代码域>  中的一个]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C2">
+          <ExpressionDefinition>
+            <Text><![CDATA['动态域类' 的使用性质 是<一些 车辆使用性质域>  中的一个]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C19">
+          <ExpressionDefinition>
+            <Text><![CDATA['动态域类' 的渠道类型域是<一些 渠道类型域>  中的一个]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C8">
+          <ExpressionDefinition>
+            <Text><![CDATA['动态域类' 的三级渠道域 是<一些 三级渠道域>  中的一个]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C3">
+          <ExpressionDefinition>
+            <Text><![CDATA['动态域类' 的业务来源 是<一些 业务来源域>  中的一个]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C10">
+          <ExpressionDefinition>
+            <Text><![CDATA['保单' 的投保车辆 的吨位 等于<一个 数字>]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C11">
+          <ExpressionDefinition>
+            <Text><![CDATA['保单' 的投保车辆 的车龄 等于<一个 数字>]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C26">
+          <ExpressionDefinition>
+            <Text><![CDATA[util. 机构与新转续判断( <一些 字符串> , <一些 字符串> , '保单'  )不成立]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C21">
+          <ExpressionDefinition>
+            <Text><![CDATA['保单' 的基本信息 的上年出险金额 等于<一个 数字>]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C4">
+          <ExpressionDefinition>
+            <Text><![CDATA[('保单' 的投保车辆 的平台车型名称  包含 "自卸" 或者'保单' 的投保车辆 的厂牌车型 包含 "自卸") 是 <一个 布尔类型>]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C22">
+          <ExpressionDefinition>
+            <Text><![CDATA[util.自主定价系数('保单' ) 等于<一个 数字>]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C17">
+          <ExpressionDefinition>
+            <Text><![CDATA[util. 返回指定险别的保额( '保单' 的险别  ,<一个 字符串> ) 大于<一个 数字>]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C12">
+          <ExpressionDefinition>
+            <Text><![CDATA['保单' 的投保车辆 的团车编码 为空字符串 是 <一个 布尔类型>]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C14">
+          <ExpressionDefinition>
+            <Text><![CDATA['保单' 的投保车辆 的号牌号码 为空字符串 是 <一个 布尔类型>]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C15">
+          <ExpressionDefinition>
+            <Text><![CDATA[字符串包含( <一个 字符串> , '保单' 的投保车辆 的号牌号码  )不成立]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C13">
+          <ExpressionDefinition>
+            <Text><![CDATA[已投保相应主险( '保单' 的险别  , <一个 字符串> )]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C18">
+          <ExpressionDefinition>
+            <Text><![CDATA['动态域类' 的车辆种类代码 是<一些 车辆种类域>  中的一个]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C24">
+          <ExpressionDefinition>
+            <Text><![CDATA['保单' 的投保车辆 的厂牌车型 是 <一些 字符串>  中的一个]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C5">
+          <ExpressionDefinition>
+            <Text><![CDATA['保单' 的投保车辆 的团车编码 是<一些 字符串> 中的一个]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C9">
+          <ExpressionDefinition>
+            <Text><![CDATA['动态域类' 的平台返回信息 是<一些 平台返回信息域>  中的一个]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C27">
+          <ExpressionDefinition>
+            <Text><![CDATA['动态域类' 的新平台返回信息 是<一些 新平台信息返回域>  中的一个]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C20">
+          <ExpressionDefinition>
+            <Text><![CDATA[util.doubleIsNull('保单' 的基本信息 的上年出险金额 ) 是 <一个 布尔类型>]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C6">
+          <ExpressionDefinition>
+            <Text><![CDATA['保单' 的定价信息 的期望折扣系数 小于 建议折扣浮动后( '保单'  , <一个 数字> )]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C7">
+          <ExpressionDefinition>
+            <Text><![CDATA['保单' 的基本信息 的整单折扣 小于 建议折扣浮动后( '保单'  , <一个 数字> )]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+      </ConditionDefinitions>
+      <ActionDefinitions>
+        <ActionDefinition Id="A0">
+          <ExpressionDefinition>
+            <Text><![CDATA['核保结果' . 设置新执行结果( <一个 字符串> , "2" , <一个 字符串> , 'index'  , '每次循环的规则集' 的业务类型  , '每次循环的规则集' 的countId , '总规则参数集' 的 禁用编码列表 )]]></Text>
+          </ExpressionDefinition>
+        </ActionDefinition>
+      </ActionDefinitions>
+    </Structure>
+    <Contents>
+      <Partition DefId="C0">
+        <Condition>
+          <Expression/>
+          <Partition DefId="C16">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[{ "21522","21508" }]]></Param>
+              </Expression>
+              <Partition DefId="C1">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ 机动车综合商业保险_2020 }]]></Param>
+                  </Expression>
+                  <Partition DefId="C2">
+                    <Condition>
+                      <Expression>
+                        <Param><![CDATA[{ 非营业个人客车 }]]></Param>
+                      </Expression>
+                      <Partition DefId="C8">
+                        <Condition>
+                          <Expression>
+                            <Text><![CDATA[<一个 对象>不是<一些 对象>中的一个]]></Text>
+                            <Param><![CDATA[{ 互联网普通直销 }]]></Param>
+                          </Expression>
+                          <Partition DefId="C11">
+                            <Condition>
+                              <Expression>
+                                <Text><![CDATA[<一个 数字>大于<一个 数字>]]></Text>
+                                <Param><![CDATA[0.75]]></Param>
+                              </Expression>
+                              <Partition DefId="C22">
+                                <Condition>
+                                  <Expression>
+                                    <Text><![CDATA[<一个 数字>小于<一个 数字>]]></Text>
+                                    <Param><![CDATA[0.85]]></Param>
+                                  </Expression>
+                                  <Partition DefId="C12">
+                                    <Condition>
+                                      <Expression>
+                                        <Param><![CDATA[成立]]></Param>
+                                      </Expression>
+                                      <ActionSet>
+                                        <Action DefId="A0">
+                                          <Expression>
+                                            <Param><![CDATA["G215_018"]]></Param>
+                                            <Param><![CDATA["请联系分公司核实定价系数"]]></Param>
+                                          </Expression>
+                                        </Action>
+                                      </ActionSet>
+                                    </Condition>
+                                  </Partition>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <Partition DefId="C16">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[{ "21522","21508" }]]></Param>
+              </Expression>
+              <Partition DefId="C1">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ 机动车综合商业保险_2020 }]]></Param>
+                  </Expression>
+                  <Partition DefId="C2">
+                    <Condition>
+                      <Expression>
+                        <Param><![CDATA[{ 非营业个人客车 }]]></Param>
+                      </Expression>
+                      <Partition DefId="C3">
+                        <Condition>
+                          <Expression>
+                            <Text><![CDATA[<一个 对象>不是<一些 对象>中的一个]]></Text>
+                            <Param><![CDATA[{ 员工车 }]]></Param>
+                          </Expression>
+                          <Partition DefId="C11">
+                            <Condition>
+                              <Expression>
+                                <Text><![CDATA[<一个 数字>大于<一个 数字>]]></Text>
+                                <Param><![CDATA[0.75]]></Param>
+                              </Expression>
+                              <Partition DefId="C22">
+                                <Condition>
+                                  <Expression>
+                                    <Text><![CDATA[<一个 数字>小于<一个 数字>]]></Text>
+                                    <Param><![CDATA[0.85]]></Param>
+                                  </Expression>
+                                  <Partition DefId="C12">
+                                    <Condition>
+                                      <Expression>
+                                        <Param><![CDATA[成立]]></Param>
+                                      </Expression>
+                                      <ActionSet>
+                                        <Action DefId="A0">
+                                          <Expression>
+                                            <Param><![CDATA["G215_018"]]></Param>
+                                            <Param><![CDATA["请联系分公司核实定价系数"]]></Param>
+                                          </Expression>
+                                        </Action>
+                                      </ActionSet>
+                                    </Condition>
+                                  </Partition>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <Partition DefId="C16">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[{ "21522","21508" }]]></Param>
+              </Expression>
+              <Partition DefId="C1">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ 机动车综合商业保险_2020 }]]></Param>
+                  </Expression>
+                  <Partition DefId="C2">
+                    <Condition>
+                      <Expression>
+                        <Param><![CDATA[{ 非营业企业客车 , 非营业机关客车 }]]></Param>
+                      </Expression>
+                      <Partition DefId="C11">
+                        <Condition>
+                          <Expression>
+                            <Text><![CDATA[<一个 数字>大于<一个 数字>]]></Text>
+                            <Param><![CDATA[0.75]]></Param>
+                          </Expression>
+                          <Partition DefId="C22">
+                            <Condition>
+                              <Expression>
+                                <Text><![CDATA[<一个 数字>小于<一个 数字>]]></Text>
+                                <Param><![CDATA[0.85]]></Param>
+                              </Expression>
+                              <Partition DefId="C12">
+                                <Condition>
+                                  <Expression>
+                                    <Param><![CDATA[成立]]></Param>
+                                  </Expression>
+                                  <ActionSet>
+                                    <Action DefId="A0">
+                                      <Expression>
+                                        <Param><![CDATA["G215_018"]]></Param>
+                                        <Param><![CDATA["请联系分公司核实定价系数"]]></Param>
+                                      </Expression>
+                                    </Action>
+                                  </ActionSet>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["21522"]]></Param>
+          </Expression>
+          <Partition DefId="C1">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[{ 机动车综合商业保险_2020 }]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ 非营业个人客车 }]]></Param>
+                  </Expression>
+                  <Partition DefId="C8">
+                    <Condition>
+                      <Expression>
+                        <Text><![CDATA[<一个 对象>不是<一些 对象>中的一个]]></Text>
+                        <Param><![CDATA[{ 互联网普通直销 }]]></Param>
+                      </Expression>
+                      <Partition DefId="C11">
+                        <Condition>
+                          <Expression>
+                            <Text><![CDATA[<一个 数字>大于<一个 数字>]]></Text>
+                            <Param><![CDATA[0.75]]></Param>
+                          </Expression>
+                          <Partition DefId="C22">
+                            <Condition>
+                              <Expression>
+                                <Text><![CDATA[<一个 数字>小于<一个 数字>]]></Text>
+                                <Param><![CDATA[0.82]]></Param>
+                              </Expression>
+                              <Partition DefId="C12">
+                                <Condition>
+                                  <Expression>
+                                    <Param><![CDATA[成立]]></Param>
+                                  </Expression>
+                                  <ActionSet>
+                                    <Action DefId="A0">
+                                      <Expression>
+                                        <Param><![CDATA["G215_018"]]></Param>
+                                        <Param><![CDATA["请联系分公司核实定价系数"]]></Param>
+                                      </Expression>
+                                    </Action>
+                                  </ActionSet>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["21522"]]></Param>
+          </Expression>
+          <Partition DefId="C1">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[{ 机动车综合商业保险_2020 }]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ 非营业个人客车 }]]></Param>
+                  </Expression>
+                  <Partition DefId="C3">
+                    <Condition>
+                      <Expression>
+                        <Text><![CDATA[<一个 对象>不是<一些 对象>中的一个]]></Text>
+                        <Param><![CDATA[{ 员工车 }]]></Param>
+                      </Expression>
+                      <Partition DefId="C11">
+                        <Condition>
+                          <Expression>
+                            <Text><![CDATA[<一个 数字>大于<一个 数字>]]></Text>
+                            <Param><![CDATA[0.75]]></Param>
+                          </Expression>
+                          <Partition DefId="C22">
+                            <Condition>
+                              <Expression>
+                                <Text><![CDATA[<一个 数字>小于<一个 数字>]]></Text>
+                                <Param><![CDATA[0.82]]></Param>
+                              </Expression>
+                              <Partition DefId="C12">
+                                <Condition>
+                                  <Expression>
+                                    <Param><![CDATA[成立]]></Param>
+                                  </Expression>
+                                  <ActionSet>
+                                    <Action DefId="A0">
+                                      <Expression>
+                                        <Param><![CDATA["G215_018"]]></Param>
+                                        <Param><![CDATA["请联系分公司核实定价系数"]]></Param>
+                                      </Expression>
+                                    </Action>
+                                  </ActionSet>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["21522"]]></Param>
+          </Expression>
+          <Partition DefId="C1">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[{ 机动车综合商业保险_2020 }]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ 非营业企业客车 , 非营业机关客车 }]]></Param>
+                  </Expression>
+                  <Partition DefId="C11">
+                    <Condition>
+                      <Expression>
+                        <Text><![CDATA[<一个 数字>大于<一个 数字>]]></Text>
+                        <Param><![CDATA[0.75]]></Param>
+                      </Expression>
+                      <Partition DefId="C22">
+                        <Condition>
+                          <Expression>
+                            <Text><![CDATA[<一个 数字>小于<一个 数字>]]></Text>
+                            <Param><![CDATA[0.82]]></Param>
+                          </Expression>
+                          <Partition DefId="C12">
+                            <Condition>
+                              <Expression>
+                                <Param><![CDATA[成立]]></Param>
+                              </Expression>
+                              <ActionSet>
+                                <Action DefId="A0">
+                                  <Expression>
+                                    <Param><![CDATA["G215_018"]]></Param>
+                                    <Param><![CDATA["请联系分公司核实定价系数"]]></Param>
+                                  </Expression>
+                                </Action>
+                              </ActionSet>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["21508"]]></Param>
+          </Expression>
+          <Partition DefId="C1">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[{ 机动车综合商业保险_2020 }]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ 非营业个人客车 }]]></Param>
+                  </Expression>
+                  <Partition DefId="C8">
+                    <Condition>
+                      <Expression>
+                        <Text><![CDATA[<一个 对象>不是<一些 对象>中的一个]]></Text>
+                        <Param><![CDATA[{ 互联网普通直销 }]]></Param>
+                      </Expression>
+                      <Partition DefId="C11">
+                        <Condition>
+                          <Expression>
+                            <Text><![CDATA[<一个 数字>大于<一个 数字>]]></Text>
+                            <Param><![CDATA[0.75]]></Param>
+                          </Expression>
+                          <Partition DefId="C22">
+                            <Condition>
+                              <Expression>
+                                <Text><![CDATA[<一个 数字>小于<一个 数字>]]></Text>
+                                <Param><![CDATA[0.82]]></Param>
+                              </Expression>
+                              <Partition DefId="C12">
+                                <Condition>
+                                  <Expression>
+                                    <Param><![CDATA[成立]]></Param>
+                                  </Expression>
+                                  <ActionSet>
+                                    <Action DefId="A0">
+                                      <Expression>
+                                        <Param><![CDATA["G215_018"]]></Param>
+                                        <Param><![CDATA["请联系分公司核实定价系数"]]></Param>
+                                      </Expression>
+                                    </Action>
+                                  </ActionSet>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["21508"]]></Param>
+          </Expression>
+          <Partition DefId="C1">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[{ 机动车综合商业保险_2020 }]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ 非营业个人客车 }]]></Param>
+                  </Expression>
+                  <Partition DefId="C3">
+                    <Condition>
+                      <Expression>
+                        <Text><![CDATA[<一个 对象>不是<一些 对象>中的一个]]></Text>
+                        <Param><![CDATA[{ 员工车 }]]></Param>
+                      </Expression>
+                      <Partition DefId="C11">
+                        <Condition>
+                          <Expression>
+                            <Text><![CDATA[<一个 数字>大于<一个 数字>]]></Text>
+                            <Param><![CDATA[0.75]]></Param>
+                          </Expression>
+                          <Partition DefId="C22">
+                            <Condition>
+                              <Expression>
+                                <Text><![CDATA[<一个 数字>小于<一个 数字>]]></Text>
+                                <Param><![CDATA[0.82]]></Param>
+                              </Expression>
+                              <Partition DefId="C12">
+                                <Condition>
+                                  <Expression>
+                                    <Param><![CDATA[成立]]></Param>
+                                  </Expression>
+                                  <ActionSet>
+                                    <Action DefId="A0">
+                                      <Expression>
+                                        <Param><![CDATA["G215_018"]]></Param>
+                                        <Param><![CDATA["请联系分公司核实定价系数"]]></Param>
+                                      </Expression>
+                                    </Action>
+                                  </ActionSet>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["21508"]]></Param>
+          </Expression>
+          <Partition DefId="C1">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[{ 机动车综合商业保险_2020 }]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ 非营业企业客车 , 非营业机关客车 }]]></Param>
+                  </Expression>
+                  <Partition DefId="C11">
+                    <Condition>
+                      <Expression>
+                        <Text><![CDATA[<一个 数字>大于<一个 数字>]]></Text>
+                        <Param><![CDATA[0.75]]></Param>
+                      </Expression>
+                      <Partition DefId="C22">
+                        <Condition>
+                          <Expression>
+                            <Text><![CDATA[<一个 数字>小于<一个 数字>]]></Text>
+                            <Param><![CDATA[0.82]]></Param>
+                          </Expression>
+                          <Partition DefId="C12">
+                            <Condition>
+                              <Expression>
+                                <Param><![CDATA[成立]]></Param>
+                              </Expression>
+                              <ActionSet>
+                                <Action DefId="A0">
+                                  <Expression>
+                                    <Param><![CDATA["G215_018"]]></Param>
+                                    <Param><![CDATA["请联系分公司核实定价系数"]]></Param>
+                                  </Expression>
+                                </Action>
+                              </ActionSet>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+      </Partition>
+    </Contents>
+  </Body>
+  <Resources DefaultLocale="zh_CN">
+    <ResourceSet Locale="zh_CN">
+      <Data Name="Definitions(A0)#HeaderText"><![CDATA[设置核保结果]]></Data>
+      <Data Name="Definitions(A0)#Width"><![CDATA[374]]></Data>
+      <Data Name="Definitions(A0)[0]#HeaderText"><![CDATA[规则编号]]></Data>
+      <Data Name="Definitions(A0)[1]#HeaderText"><![CDATA[核保意见]]></Data>
+      <Data Name="Definitions(C0)#HeaderText"><![CDATA[机构代码]]></Data>
+      <Data Name="Definitions(C0)#Width"><![CDATA[125]]></Data>
+      <Data Name="Definitions(C1)#HeaderText"><![CDATA[产品代码]]></Data>
+      <Data Name="Definitions(C1)#Width"><![CDATA[172]]></Data>
+      <Data Name="Definitions(C10)#HeaderText"><![CDATA[吨位]]></Data>
+      <Data Name="Definitions(C10)#Width"><![CDATA[121]]></Data>
+      <Data Name="Definitions(C11)#HeaderText"><![CDATA[车龄]]></Data>
+      <Data Name="Definitions(C12)#HeaderText"><![CDATA[团车编码为空]]></Data>
+      <Data Name="Definitions(C12)#Width"><![CDATA[192]]></Data>
+      <Data Name="Definitions(C13)#HeaderText"><![CDATA[投保险别]]></Data>
+      <Data Name="Definitions(C13)#Width"><![CDATA[110]]></Data>
+      <Data Name="Definitions(C14)#HeaderText"><![CDATA[车牌号为空]]></Data>
+      <Data Name="Definitions(C14)#Width"><![CDATA[165]]></Data>
+      <Data Name="Definitions(C15)#HeaderText"><![CDATA[号牌号码不包含]]></Data>
+      <Data Name="Definitions(C15)#Width"><![CDATA[172]]></Data>
+      <Data Name="Definitions(C16)#HeaderText"><![CDATA[机构代码不包含]]></Data>
+      <Data Name="Definitions(C16)#Width"><![CDATA[159]]></Data>
+      <Data Name="Definitions(C17)#HeaderText"><![CDATA[险别的保额]]></Data>
+      <Data Name="Definitions(C17)#Width"><![CDATA[220]]></Data>
+      <Data Name="Definitions(C17)[0]#HeaderText"><![CDATA[险别编码]]></Data>
+      <Data Name="Definitions(C17)[1]#HeaderText"><![CDATA[保额]]></Data>
+      <Data Name="Definitions(C18)#HeaderText"><![CDATA[车辆种类]]></Data>
+      <Data Name="Definitions(C18)#Width"><![CDATA[251]]></Data>
+      <Data Name="Definitions(C19)#HeaderText"><![CDATA[渠道类型]]></Data>
+      <Data Name="Definitions(C19)#Width"><![CDATA[100]]></Data>
+      <Data Name="Definitions(C2)#HeaderText"><![CDATA[车辆使用性质]]></Data>
+      <Data Name="Definitions(C2)#Width"><![CDATA[235]]></Data>
+      <Data Name="Definitions(C20)#HeaderText"><![CDATA[上年出险金额为空]]></Data>
+      <Data Name="Definitions(C20)#Width"><![CDATA[153]]></Data>
+      <Data Name="Definitions(C21)#HeaderText"><![CDATA[上年出险金额]]></Data>
+      <Data Name="Definitions(C21)#Width"><![CDATA[148]]></Data>
+      <Data Name="Definitions(C22)#HeaderText"><![CDATA[自主定价系数]]></Data>
+      <Data Name="Definitions(C22)#Width"><![CDATA[145]]></Data>
+      <Data Name="Definitions(C24)#HeaderText"><![CDATA[厂牌车型]]></Data>
+      <Data Name="Definitions(C26)#HeaderText"><![CDATA[机构与新转续不包含]]></Data>
+      <Data Name="Definitions(C26)#Width"><![CDATA[248]]></Data>
+      <Data Name="Definitions(C26)[0]#HeaderText"><![CDATA[机构]]></Data>
+      <Data Name="Definitions(C26)[1]#HeaderText"><![CDATA[新转续标志]]></Data>
+      <Data Name="Definitions(C27)#HeaderText"><![CDATA[新平台返回信息]]></Data>
+      <Data Name="Definitions(C3)#HeaderText"><![CDATA[业务来源]]></Data>
+      <Data Name="Definitions(C4)#HeaderText"><![CDATA[自卸车]]></Data>
+      <Data Name="Definitions(C4)#Width"><![CDATA[117]]></Data>
+      <Data Name="Definitions(C5)#HeaderText"><![CDATA[团车编码]]></Data>
+      <Data Name="Definitions(C5)#Width"><![CDATA[151]]></Data>
+      <Data Name="Definitions(C6)#HeaderText"><![CDATA[期望折扣下浮]]></Data>
+      <Data Name="Definitions(C7)#HeaderText"><![CDATA[整单折扣下浮]]></Data>
+      <Data Name="Definitions(C8)#HeaderText"><![CDATA[三级渠道]]></Data>
+      <Data Name="Definitions(C9)#HeaderText"><![CDATA[平台返回信息]]></Data>
+      <Data Name="Definitions(C9)#Width"><![CDATA[115]]></Data>
+    </ResourceSet>
+  </Resources>
+</DT></definition>
+</ilog.rules.studio.model.dt:DecisionTable>

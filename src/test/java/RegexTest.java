@@ -1,4 +1,5 @@
 import com.alibaba.excel.EasyExcel;
+import ink.zhaojun.config.MyMergeStrategy;
 import ink.zhaojun.domain.Contents;
 import ink.zhaojun.domain.DataTableHead;
 import ink.zhaojun.parsing.Parsing;
@@ -9,26 +10,30 @@ import org.junit.Test;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class RegexTest {
 
     private Map<String, Integer> headContentMapper = new LinkedHashMap<>();
+
+    private List<Integer[]> mergeIndexList = new ArrayList<>();
 
     @Test
     public void noModelWrite() throws DocumentException {
         // 写法1
 
         Parsing parsing = new Parsing();
-        Result result = parsing.parsing("D:\\IDEAWorkSpace\\decision-table-parsing\\src\\main\\resources\\test2.dta");
+        Result result = parsing.parsing("D:\\IDEAWorkSpace\\decision-table-parsing\\src\\main\\resources\\test6.dta");
 
         List<Map.Entry<String, DataTableHead>> sortHeadList = result.getDataTableHeadHashMap();
         List<Contents> contentsList = result.getContentsList();
 
         String fileName = "C:\\Users\\zxcl06\\Desktop\\输出\\" + "noModelWrite" + System.currentTimeMillis() + ".xlsx";
         // 这里 需要指定写用哪个class去写，然后写到第一个sheet，名字为模板 然后文件流会自动关闭
-        EasyExcel.write(fileName).head(head(sortHeadList)).sheet("模板").doWrite(dataList(sortHeadList,contentsList));
+        EasyExcel.write(fileName)
+                .head(head(sortHeadList))
+                .registerWriteHandler(new MyMergeStrategy(mergeIndexList))
+                .sheet("模板")
+                .doWrite(dataList(sortHeadList, contentsList));
 //        head();
     }
 
@@ -66,7 +71,7 @@ public class RegexTest {
      * @param lineContents
      * @return
      */
-    private List<Contents> fillLineContents(Map<String, Integer> headContentMapper, List<Contents> lineContents) {
+    private List<Contents> fillLineContents(Map<String, Integer> headContentMapper, List<Contents> lineContents, int lineIndex) {
         List<Contents> result = new ArrayList<>();
         AtomicInteger index = new AtomicInteger();
         headContentMapper.forEach((id, count) -> {
@@ -79,6 +84,14 @@ public class RegexTest {
                         paramList.add(StringUtils.EMPTY);
                     }
                     content.setParamList(paramList);
+                } else if (content.getParamList().size() != count) {
+                    List<String> paramList = content.getParamList();
+                    for (int i = 0; i < (count - content.getParamList().size()); i++) {
+                        paramList.add(StringUtils.EMPTY);
+                    }
+                    int sumIndex = sumIndex(headContentMapper, content);
+                    Integer[] mergeIndex = new Integer[]{lineIndex + 2, lineIndex + 2, sumIndex, sumIndex + count - 1};
+                    mergeIndexList.add(mergeIndex);
                 }
                 result.add(content);
             } else {
@@ -95,6 +108,20 @@ public class RegexTest {
         });
         return result;
     }
+
+    private int sumIndex(Map<String, Integer> headContentMapper,Contents content){
+        int sum = 0;
+        for (Map.Entry<String, Integer> entry : headContentMapper.entrySet()) {
+            String id = entry.getKey();
+            Integer count = entry.getValue();
+            if (content.getDefId().equals(id)) {
+                return sum;
+            }
+            sum += count;
+        }
+        return 0;
+    }
+
 
     /**
      * 通过id获取contents
@@ -121,7 +148,7 @@ public class RegexTest {
     }
 
 
-    private List<List<Object>> dataList(List<Map.Entry<String, DataTableHead>> sortHeadList,List<Contents> contentsList) {
+    private List<List<Object>> dataList(List<Map.Entry<String, DataTableHead>> sortHeadList, List<Contents> contentsList) {
         //先根据结果列拆分列表
         String lastActionId = sortHeadList.get(sortHeadList.size() - 1).getKey();
         List<List<Contents>> lineContentsList = new ArrayList<>();
@@ -134,14 +161,14 @@ public class RegexTest {
             }
         }
         List<List<Object>> list = new ArrayList<>();
+        int index = 0;
         for (List<Contents> lineContents : lineContentsList) {
             List<Object> data = new ArrayList<>();
-            List<Contents> fillLineContents = fillLineContents(headContentMapper, lineContents);
+            List<Contents> fillLineContents = fillLineContents(headContentMapper, lineContents, index);
+            index++;
             System.out.println(fillLineContents);
             for (Contents fillLineContent : fillLineContents) {
-                for (String param : fillLineContent.getParamList()) {
-                    data.add(param);
-                }
+                data.addAll(fillLineContent.getParamList());
             }
             list.add(data);
         }

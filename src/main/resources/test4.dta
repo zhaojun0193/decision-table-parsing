@@ -1,0 +1,1538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.dt:DecisionTable xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.dt="http://ilog.rules.studio/model/dt.ecore">
+  <name>内蒙古</name>
+  <uuid>dd12c082-c19b-4e61-9061-2b84502ffe4b</uuid>
+  <locale>zh_CN</locale>
+  <definition>
+<DT xmlns="http://schemas.ilog.com/Rules/7.0/DecisionTable" Version="7.0">
+  <Body>
+    <Preconditions>
+      <Text><![CDATA[预定义 ]]>&#13;<![CDATA[
+	指定 '三者险' 为 一个险别  来自( in ) '保单' 的险别 符合条件： 当前这个险别 的险别编码 是 "B"]]>&#13;<![CDATA[
+	并且 '保单' 的基本信息 的机构代码 以"215"开始;]]></Text>
+    </Preconditions>
+    <Structure>
+      <ConditionDefinitions>
+        <ConditionDefinition Id="C2">
+          <ExpressionDefinition>
+            <Text><![CDATA['保单' 的基本信息 的机构代码 以<一个 字符串> 开始]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C3">
+          <ExpressionDefinition>
+            <Text><![CDATA['保单' 的投保车辆 的车辆使用性质是<一个 车辆使用性质域>]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C0">
+          <ExpressionDefinition>
+            <Text><![CDATA['保单' 的投保车辆 的核定座位数 大于等于<一个 数字> 小于<一个 数字>]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C4">
+          <ExpressionDefinition>
+            <Text><![CDATA['保单' 的投保车辆 的吨位 大于等于<一个 数字> 小于<一个 数字>]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C1">
+          <ExpressionDefinition>
+            <Text><![CDATA['保单' 的投保车辆 的车辆明细代码 是<一个 车辆明细域>]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+      </ConditionDefinitions>
+      <ActionDefinitions>
+        <ActionDefinition Id="A0">
+          <ExpressionDefinition>
+            <Text><![CDATA[设置'机动车综合商业保险的第三者责任保险保额超出范围的B基准纯风险保费'   为<一个 数字>]]></Text>
+          </ExpressionDefinition>
+        </ActionDefinition>
+        <ActionDefinition Id="A1">
+          <ExpressionDefinition>
+            <Text><![CDATA[设置'机动车综合商业保险的第三者责任保险保额超出范围的A基准纯风险保费'   为<一个 数字>]]></Text>
+          </ExpressionDefinition>
+        </ActionDefinition>
+      </ActionDefinitions>
+    </Structure>
+    <Contents>
+      <Partition DefId="C2">
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[非营业个人客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[1]]></Param>
+                    <Param><![CDATA[6]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[631.86]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[690.78]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[非营业个人客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[6]]></Param>
+                    <Param><![CDATA[10]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[747.59]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[817.31]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[非营业个人客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Text><![CDATA[<一个 数字>大于等于<一个 数字>]]></Text>
+                    <Param><![CDATA[10]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[747.59]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[817.31]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[非营业企业客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[1]]></Param>
+                    <Param><![CDATA[6]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[670.10]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[725.66]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[非营业企业客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[6]]></Param>
+                    <Param><![CDATA[10]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[771.42]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[835.37]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[非营业企业客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[10]]></Param>
+                    <Param><![CDATA[20]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[619.78]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[671.17]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[非营业企业客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Text><![CDATA[<一个 数字>大于等于<一个 数字>]]></Text>
+                    <Param><![CDATA[20]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[1,295.88]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[1,403.33]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[非营业机关客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[1]]></Param>
+                    <Param><![CDATA[6]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[424.66]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[459.86]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[非营业机关客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[6]]></Param>
+                    <Param><![CDATA[10]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[488.86]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[529.40]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[非营业机关客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[10]]></Param>
+                    <Param><![CDATA[20]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[392.77]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[425.33]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[非营业机关客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Text><![CDATA[<一个 数字>大于等于<一个 数字>]]></Text>
+                    <Param><![CDATA[20]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[821.23]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[889.33]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[非营业货车]]></Param>
+              </Expression>
+              <Partition DefId="C4">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[0]]></Param>
+                    <Param><![CDATA[2]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[1,000.61]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[1,097.80]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[非营业货车]]></Param>
+              </Expression>
+              <Partition DefId="C4">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[2]]></Param>
+                    <Param><![CDATA[5]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[1,428.34]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[1,567.07]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[非营业货车]]></Param>
+              </Expression>
+              <Partition DefId="C4">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[5]]></Param>
+                    <Param><![CDATA[10]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[2,067.03]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[2,267.79]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[非营业货车]]></Param>
+              </Expression>
+              <Partition DefId="C4">
+                <Condition>
+                  <Expression>
+                    <Text><![CDATA[<一个 数字>大于等于<一个 数字>]]></Text>
+                    <Param><![CDATA[10]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[3,124.94]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[3,428.44]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[非营业货车]]></Param>
+              </Expression>
+              <Partition DefId="C1">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[低速货车]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA[976.79]]></Param>
+                      </Expression>
+                    </Action>
+                    <Action DefId="A1">
+                      <Expression>
+                        <Param><![CDATA[1,071.66]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[营业出租租赁客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[1]]></Param>
+                    <Param><![CDATA[6]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[2,709.77]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[2,964.74]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[营业出租租赁客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[6]]></Param>
+                    <Param><![CDATA[10]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[1,362.31]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[1,490.50]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[营业出租租赁客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[10]]></Param>
+                    <Param><![CDATA[20]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[2,324.45]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[2,543.17]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[营业出租租赁客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[20]]></Param>
+                    <Param><![CDATA[36]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[3,286.68]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[3,595.94]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[营业出租租赁客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Text><![CDATA[<一个 数字>大于等于<一个 数字>]]></Text>
+                    <Param><![CDATA[36]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[3,785.09]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[4,141.24]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[营业城市公交客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[6]]></Param>
+                    <Param><![CDATA[10]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[1,042.55]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[1,140.64]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[营业城市公交客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[10]]></Param>
+                    <Param><![CDATA[20]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[1,778.85]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[1,946.23]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[营业城市公交客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[20]]></Param>
+                    <Param><![CDATA[36]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[2,515.23]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[2,751.89]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[营业城市公交客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Text><![CDATA[<一个 数字>大于等于<一个 数字>]]></Text>
+                    <Param><![CDATA[36]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[2,896.64]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[3,169.21]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[营业公路客运客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[6]]></Param>
+                    <Param><![CDATA[10]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[1,417.18]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[1,550.52]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[营业公路客运客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[10]]></Param>
+                    <Param><![CDATA[20]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[2,418.06]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[2,645.59]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[营业公路客运客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[20]]></Param>
+                    <Param><![CDATA[36]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[3,419.06]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[3,740.76]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[营业公路客运客车]]></Param>
+              </Expression>
+              <Partition DefId="C0">
+                <Condition>
+                  <Expression>
+                    <Text><![CDATA[<一个 数字>大于等于<一个 数字>]]></Text>
+                    <Param><![CDATA[36]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[3,937.53]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[4,308.02]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[营业货车]]></Param>
+              </Expression>
+              <Partition DefId="C4">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[0]]></Param>
+                    <Param><![CDATA[2]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[3,028.93]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[3,361.16]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[营业货车]]></Param>
+              </Expression>
+              <Partition DefId="C4">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[2]]></Param>
+                    <Param><![CDATA[5]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[3,810.69]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[4,228.67]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[营业货车]]></Param>
+              </Expression>
+              <Partition DefId="C4">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[5]]></Param>
+                    <Param><![CDATA[10]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[5,013.87]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[5,563.83]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[营业货车]]></Param>
+              </Expression>
+              <Partition DefId="C4">
+                <Condition>
+                  <Expression>
+                    <Text><![CDATA[<一个 数字>大于等于<一个 数字>]]></Text>
+                    <Param><![CDATA[10]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA[8,340.39]]></Param>
+                          </Expression>
+                        </Action>
+                        <Action DefId="A1">
+                          <Expression>
+                            <Param><![CDATA[9,255.21]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["215"]]></Param>
+          </Expression>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[营业货车]]></Param>
+              </Expression>
+              <Partition DefId="C1">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[低速货车]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA[2,889.86]]></Param>
+                      </Expression>
+                    </Action>
+                    <Action DefId="A1">
+                      <Expression>
+                        <Param><![CDATA[3,206.84]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+      </Partition>
+    </Contents>
+  </Body>
+  <Resources DefaultLocale="zh_CN">
+    <ResourceSet Locale="zh_CN">
+      <Data Name="Definitions(A0)#HeaderText"><![CDATA[第三者责任保险的B基准纯风险保费]]></Data>
+      <Data Name="Definitions(A0)#Width"><![CDATA[139]]></Data>
+      <Data Name="Definitions(A1)#HeaderText"><![CDATA[第三者责任保险的A基准纯风险保费]]></Data>
+      <Data Name="Definitions(A1)#Width"><![CDATA[139]]></Data>
+      <Data Name="Definitions(C0)#HeaderText"><![CDATA[座位数]]></Data>
+      <Data Name="Definitions(C0)#Width"><![CDATA[94]]></Data>
+      <Data Name="Definitions(C0)[0]#HeaderText"><![CDATA[大于等于]]></Data>
+      <Data Name="Definitions(C0)[1]#HeaderText"><![CDATA[小于]]></Data>
+      <Data Name="Definitions(C1)#HeaderText"><![CDATA[车辆种类]]></Data>
+      <Data Name="Definitions(C1)#Width"><![CDATA[130]]></Data>
+      <Data Name="Definitions(C2)#HeaderText"><![CDATA[机构代码]]></Data>
+      <Data Name="Definitions(C2)#Width"><![CDATA[141]]></Data>
+      <Data Name="Definitions(C3)#HeaderText"><![CDATA[车辆使用性质]]></Data>
+      <Data Name="Definitions(C3)#Width"><![CDATA[127]]></Data>
+      <Data Name="Definitions(C4)#HeaderText"><![CDATA[吨位]]></Data>
+      <Data Name="Definitions(C4)#Width"><![CDATA[90]]></Data>
+      <Data Name="Definitions(C4)[0]#HeaderText"><![CDATA[大于等于]]></Data>
+      <Data Name="Definitions(C4)[1]#HeaderText"><![CDATA[小于]]></Data>
+    </ResourceSet>
+  </Resources>
+</DT></definition>
+</ilog.rules.studio.model.dt:DecisionTable>

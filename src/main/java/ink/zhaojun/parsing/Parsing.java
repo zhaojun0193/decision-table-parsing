@@ -2,6 +2,7 @@ package ink.zhaojun.parsing;
 
 import ink.zhaojun.domain.Contents;
 import ink.zhaojun.domain.DataTableHead;
+import ink.zhaojun.enums.SymbolEnum;
 import ink.zhaojun.parsing.result.Result;
 import ink.zhaojun.utils.RegexUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -58,6 +59,10 @@ public class Parsing {
         Map<String, DataTableHead> dataTableHeadHashMap = new HashMap<>();
         assert resourceSet != null;
         List<Element> dataElements = resourceSet.elements();
+
+        // 临时存储index=0的内容
+        Map<String, String> tempZeroMap = new HashMap<>();
+
         for (Element element : dataElements) {
             String attributeName = element.attribute("Name").getText();
 
@@ -85,7 +90,14 @@ public class Parsing {
                         headerTextList[0] = text;
                     } else {
                         int index = Integer.parseInt(headIndex);
-                        headerTextList[index + 1] = text;
+                        if (index == 0) {
+                            tempZeroMap.put(definitionsId, text);
+                        } else if (index == 1) {
+                            headerTextList[1] = tempZeroMap.get(definitionsId);
+                            headerTextList[index + 1] = text;
+                        } else {
+                            headerTextList[index + 1] = text;
+                        }
                     }
                 }
             }
@@ -134,9 +146,10 @@ public class Parsing {
 
             //条件列
             List<Element> paramElementList = expression.elements("Param");
+            Element textElement = expression.element("Text");
             List<String> paramList = new ArrayList<>();
             for (Element parEle : paramElementList) {
-                paramList.add(formattingStr(parEle.getText()));
+                paramList.add(textParsing(textElement).append(formattingStr(parEle.getText())).toString());
             }
             contents.setParamList(paramList);
             contentsList.add(contents);
@@ -158,6 +171,34 @@ public class Parsing {
                     contentsList.add(action);
                 }
             }
+        }
+    }
+
+
+    /**
+     * 解析text元素
+     * @param text
+     * @return
+     */
+    public static StringBuilder textParsing(Element textElement){
+        if(Objects.isNull(textElement)){
+            return new StringBuilder(StringUtils.EMPTY);
+        }
+        String text = textElement.getText();
+        if(SymbolEnum.LT.getChinese().equals(formattingStr(text))){
+            return new StringBuilder(SymbolEnum.LT.getSymbol());
+        }else if (SymbolEnum.ELT.getChinese().equals(formattingStr(text))){
+            return new StringBuilder(SymbolEnum.ELT.getSymbol());
+        }else if (SymbolEnum.GT.getChinese().equals(formattingStr(text))){
+            return new StringBuilder(SymbolEnum.GT.getSymbol());
+        }else if (SymbolEnum.EGT.getChinese().equals(formattingStr(text))){
+            return new StringBuilder(SymbolEnum.EGT.getSymbol());
+        }else if (SymbolEnum.EQ.getChinese().equals(formattingStr(text))){
+            return new StringBuilder(SymbolEnum.EQ.getSymbol());
+        }else if(SymbolEnum.NOT_IN.getChinese().equals(formattingStr(text))){
+            return new StringBuilder(SymbolEnum.NOT_IN.getSymbol());
+        }else {
+            return new StringBuilder(text);
         }
     }
 

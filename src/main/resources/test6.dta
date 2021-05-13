@@ -1,0 +1,1977 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.dt:DecisionTable xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.dt="http://ilog.rules.studio/model/dt.ecore">
+  <name>陕西见费出单决策表</name>
+  <uuid>a50912fa-5efc-4ffa-91b9-ee8197fa81f7</uuid>
+  <locale>zh_CN</locale>
+  <definition>
+<DT xmlns="http://schemas.ilog.com/Rules/7.0/DecisionTable" Version="7.0">
+  <Body>
+    <Structure>
+      <ConditionDefinitions>
+        <ConditionDefinition Id="C0">
+          <ExpressionDefinition>
+            <Text><![CDATA[过期时间判断( <一个 日期> , <一个 日期> )]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C4">
+          <ExpressionDefinition>
+            <Text><![CDATA['返回结果' .isOrgMatch ( <一个 字符串> , '保单' 的基本信息 的机构代码  )]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C5">
+          <ExpressionDefinition>
+            <Text><![CDATA[util.jfcdCProdNoAndBusinessTypeContain ( <一些 字符串> , <一些 字符串> ,'保单'的基本信息的险种代码 , '保单' 的基本信息 的见费出单业务类型  )]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C1">
+          <ExpressionDefinition>
+            <Text><![CDATA['保单' 的基本信息 的条款编码 是<一些 对象> 中的一个]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+      </ConditionDefinitions>
+      <ActionDefinitions>
+        <ActionDefinition Id="A0">
+          <ExpressionDefinition>
+            <Text><![CDATA['返回结果'设置见费出单结果( <一个 字符串> , <一个 布尔类型> , <一个 字符串> )]]></Text>
+          </ExpressionDefinition>
+        </ActionDefinition>
+      </ActionDefinitions>
+    </Structure>
+    <Contents>
+      <Partition DefId="C0">
+        <Condition>
+          <Expression/>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610000000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","0632" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008","B1" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0001"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610301000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","3106","0614","0766","0769","0773" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008","B1" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0002"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610116000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","3114","0614","0766","0769","0773","3107" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008","B1" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0003"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610116101"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","3106","0769","0773" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008","B1" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0004"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610700000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008","B1" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0005"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610721000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","3106","0769","0773" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008","B1" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0006"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-04-04　14:27:58]]></Param>
+            <Param><![CDATA[2019-04-20　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610124000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0007"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-04-29　06:00:00]]></Param>
+            <Param><![CDATA[2019-04-29　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610629000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3126" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0008"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-05-15　06:00:00]]></Param>
+            <Param><![CDATA[2019-05-17　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610522000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0009"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-05-31　06:00:00]]></Param>
+            <Param><![CDATA[2019-12-31　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610124000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3114","3107","3127","3201","3220","3202" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0010"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-05-31　06:00:00]]></Param>
+            <Param><![CDATA[2019-05-31　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610000602"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","0104","0401" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0011"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-06-05　06:00:00]]></Param>
+            <Param><![CDATA[2019-06-14　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610523000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0012"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-06-10　06:00:00]]></Param>
+            <Param><![CDATA[2019-06-21　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610725000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0013"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-06-13　06:00:00]]></Param>
+            <Param><![CDATA[2019-06-17　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610125000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0014"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-06-14　06:00:00]]></Param>
+            <Param><![CDATA[2019-07-30　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610304000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0015"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-06-14　06:00:00]]></Param>
+            <Param><![CDATA[2019-06-30　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610524000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3126" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0016"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-06-25　06:00:00]]></Param>
+            <Param><![CDATA[2019-09-27　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610701000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3120" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0017"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-06-25　06:00:00]]></Param>
+            <Param><![CDATA[2019-06-30　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610116203"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0018"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-06-25　06:00:00]]></Param>
+            <Param><![CDATA[2019-07-15　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610722101"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0019"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-06-27　06:00:00]]></Param>
+            <Param><![CDATA[2019-06-28　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610721101"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0020"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-07-01　06:00:00]]></Param>
+            <Param><![CDATA[2019-08-15　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610200101"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3121" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0021"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-07-01　06:00:00]]></Param>
+            <Param><![CDATA[2019-08-15　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610200103"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3121" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0022"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-07-01　06:00:00]]></Param>
+            <Param><![CDATA[2019-08-15　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610200102"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3121" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0023"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-07-01　06:00:00]]></Param>
+            <Param><![CDATA[2019-08-15　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610200104"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3121" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0024"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-07-24　00:00:00]]></Param>
+            <Param><![CDATA[2019-08-30　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610524000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3114" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0025"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-07-31　00:00:00]]></Param>
+            <Param><![CDATA[2019-08-20　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610523101"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3138" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0026"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-07-31　00:00:00]]></Param>
+            <Param><![CDATA[2019-08-01　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610116000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3114" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0027"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-08-26　00:00:00]]></Param>
+            <Param><![CDATA[2019-08-30　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610125000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0028"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-09-02　00:00:00]]></Param>
+            <Param><![CDATA[2019-09-04　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610801000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773" ,"3114","3121"}]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0029"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-09-11　00:00:00]]></Param>
+            <Param><![CDATA[2019-11-30　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610124101"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773" ,"3258"}]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0030"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-09-11　00:00:00]]></Param>
+            <Param><![CDATA[2019-11-30　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610124113"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773" ,"3258"}]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0031"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-09-11　00:00:00]]></Param>
+            <Param><![CDATA[2019-11-30　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610124205"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773" ,"3258"}]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0032"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-09-11　00:00:00]]></Param>
+            <Param><![CDATA[2019-11-30　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610124203"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773" ,"3258"}]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0033"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-09-10　00:00:00]]></Param>
+            <Param><![CDATA[2019-11-30　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610721101"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3120" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0034"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-10-08　00:00:00]]></Param>
+            <Param><![CDATA[2019-10-11　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610528000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0035"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-10-08　00:00:00]]></Param>
+            <Param><![CDATA[2019-11-30　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610721101"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3120" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0036"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-10-12　00:00:00]]></Param>
+            <Param><![CDATA[2019-10-25　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610801101"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3125","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0037"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-11-04　00:00:00]]></Param>
+            <Param><![CDATA[2019-12-20　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610200000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3108" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0038"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-11-07　00:00:00]]></Param>
+            <Param><![CDATA[2019-12-08　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610724000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0039"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2019-11-08　00:00:00]]></Param>
+            <Param><![CDATA[2019-11-25　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610801101"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3125" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0040"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2020-03-13　00:00:00]]></Param>
+            <Param><![CDATA[2020-03-31　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610502000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3107" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0041"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2020-03-26　00:00:00]]></Param>
+            <Param><![CDATA[2020-08-31　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610324000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0042"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2020-04-14　00:00:00]]></Param>
+            <Param><![CDATA[2020-04-17　23:00:00]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610124000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0043"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2020-05-18　00:00:00]]></Param>
+            <Param><![CDATA[2020-06-15　23:00:00]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610522000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0044"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2020-05-20　00:00:00]]></Param>
+            <Param><![CDATA[2020-07-31　23:00:00]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610326000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3127" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0045"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2020-05-20　00:00:00]]></Param>
+            <Param><![CDATA[2020-06-30　23:00:00]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610124000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3102" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0046"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2020-06-09　00:00:00]]></Param>
+            <Param><![CDATA[2020-06-25　23:00:00]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610722000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0048"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2020-06-09　00:00:00]]></Param>
+            <Param><![CDATA[2020-06-30　23:00:00]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610724000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0049"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2020-06-10　00:00:00]]></Param>
+            <Param><![CDATA[2020-07-10　23:00:00]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610725000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0050"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2020-06-11　00:00:00]]></Param>
+            <Param><![CDATA[2020-06-30　23:00:00]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610523000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0051"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2020-06-22　00:00:00]]></Param>
+            <Param><![CDATA[2020-06-30　23:00:00]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610721000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0052"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2020-06-23　00:00:00]]></Param>
+            <Param><![CDATA[2020-06-30　23:00:00]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610601000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0053"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2020-06-24　00:00:00]]></Param>
+            <Param><![CDATA[2020-06-30　23:00:00]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610403000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0054"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2020-07-15　00:00:00]]></Param>
+            <Param><![CDATA[2020-07-31　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610125000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0055"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2020-07-15　00:00:00]]></Param>
+            <Param><![CDATA[2020-07-23　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610721000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106","3119" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0056"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2020-09-04　00:00:00]]></Param>
+            <Param><![CDATA[2020-09-07　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610116000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0057"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2020-09-15　00:00:00]]></Param>
+            <Param><![CDATA[2020-12-31　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2611000000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008","B1" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0058"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2020-10-29　00:00:00]]></Param>
+            <Param><![CDATA[2020-11-03　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610304000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3107" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0059"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2020-11-23　00:00:00]]></Param>
+            <Param><![CDATA[2020-11-27　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610528000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0060"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2020-12-08　00:00:00]]></Param>
+            <Param><![CDATA[2020-12-25　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610124000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","0632","3102" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008","B1" }]]></Param>
+                  </Expression>
+                  <Partition DefId="C1">
+                    <Condition>
+                      <Expression>
+                        <Param><![CDATA[{ "V2610000_01_243" }]]></Param>
+                      </Expression>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression>
+                            <Param><![CDATA["RULE_JFCD_0061"]]></Param>
+                            <Param><![CDATA[不成立]]></Param>
+                            <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                          </Expression>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2021-04-23　00:00:00]]></Param>
+            <Param><![CDATA[2021-06-01　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610124000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","0632","3102" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008","B1" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0063"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2021-04-28　00:00:00]]></Param>
+            <Param><![CDATA[2021-05-09　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610403000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","0632","3201","3206","3273" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008","B1" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0064"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2021-04-30　00:00:00]]></Param>
+            <Param><![CDATA[2021-05-15　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610629000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","0632","3220" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008","B1" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0065"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[2021-05-13　00:00:00]]></Param>
+            <Param><![CDATA[2021-06-01　23:59:59]]></Param>
+          </Expression>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression>
+                <Param><![CDATA["2610522000"]]></Param>
+              </Expression>
+              <Partition DefId="C5">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[{ "0630","0436","1015","0447","0326","0746","0750","0408","0758","0614","0766","0769","0773","0632","3106" }]]></Param>
+                    <Param><![CDATA[{ "003","004","007","008","B1" }]]></Param>
+                  </Expression>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression>
+                        <Param><![CDATA["RULE_JFCD_0066"]]></Param>
+                        <Param><![CDATA[不成立]]></Param>
+                        <Param><![CDATA["为除外险种或者除外业务类型,不符合见费出单的要求"]]></Param>
+                      </Expression>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+      </Partition>
+    </Contents>
+  </Body>
+  <Resources DefaultLocale="zh_CN">
+    <ResourceSet Locale="zh_CN">
+      <Data Name="/32/0#Comment"><![CDATA[2610200000]]></Data>
+      <Data Name="Definitions(A0)#HeaderText"><![CDATA[设置见费出单返回结果]]></Data>
+      <Data Name="Definitions(A0)#Width"><![CDATA[405]]></Data>
+      <Data Name="Definitions(A0)[0]#HeaderText"><![CDATA[规则编号]]></Data>
+      <Data Name="Definitions(A0)[1]#HeaderText"><![CDATA[是否通过]]></Data>
+      <Data Name="Definitions(A0)[2]#HeaderText"><![CDATA[返回信息]]></Data>
+      <Data Name="Definitions(C0)#HeaderText"><![CDATA[生效失效时间]]></Data>
+      <Data Name="Definitions(C0)#Width"><![CDATA[238]]></Data>
+      <Data Name="Definitions(C0)[0]#HeaderText"><![CDATA[开始时间]]></Data>
+      <Data Name="Definitions(C0)[1]#HeaderText"><![CDATA[结束时间]]></Data>
+      <Data Name="Definitions(C1)#HeaderText"><![CDATA[条款编码]]></Data>
+      <Data Name="Definitions(C1)#Width"><![CDATA[242]]></Data>
+      <Data Name="Definitions(C4)#HeaderText"><![CDATA[机构]]></Data>
+      <Data Name="Definitions(C4)#Width"><![CDATA[242]]></Data>
+      <Data Name="Definitions(C5)#HeaderText"><![CDATA[除外险种、除外业务类型]]></Data>
+      <Data Name="Definitions(C5)#Width"><![CDATA[240]]></Data>
+      <Data Name="Definitions(C5)[0]#HeaderText"><![CDATA[除外险种]]></Data>
+      <Data Name="Definitions(C5)[1]#HeaderText"><![CDATA[除外业务类型]]></Data>
+    </ResourceSet>
+  </Resources>
+</DT></definition>
+</ilog.rules.studio.model.dt:DecisionTable>

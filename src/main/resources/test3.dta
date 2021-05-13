@@ -1,0 +1,1638 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.dt:DecisionTable xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.dt="http://ilog.rules.studio/model/dt.ecore">
+  <name>河北代收代缴税费2020年3月-2020年5月</name>
+  <uuid>592210f6-4108-4b44-b4b0-230fbee04261</uuid>
+  <locale>zh_CN</locale>
+  <definition>
+<DT Version="7.0" xmlns="http://schemas.ilog.com/Rules/7.0/DecisionTable">
+  <Body>
+    <Properties>
+      <Property Name="Check.Gap" Type="xs:boolean"><![CDATA[false]]></Property>
+      <Property Name="Lock.EditActionExpr" Type="xs:boolean"><![CDATA[false]]></Property>
+      <Property Name="UI.AutoResizeTable" Type="xs:boolean"><![CDATA[false]]></Property>
+    </Properties>
+    <Structure>
+      <ConditionDefinitions>
+        <ConditionDefinition Id="C0">
+          <ExpressionDefinition>
+            <Text><![CDATA[util.orgCodeContaionNotLiao ( <一个 字符串> , '保单' 的基本信息 的机构代码  )]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C1">
+          <ExpressionDefinition>
+            <Text><![CDATA[util.feeNoTaxCalculateJL( <一个 数字> , '保单' 的基本信息 的手续费收入（含税） ,'返回结果'  )]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C2">
+          <ExpressionDefinition>
+            <Text><![CDATA[util.valueAddedTaxCalculateNotLiao ( <一个 字符串> , <一个 数字> ,'保单' 的基本信息 的手续费收入（含税） , <一个 数字> ,'返回结果'  )]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C3">
+          <ExpressionDefinition>
+            <Text><![CDATA[util.constructionTaxCalculate ( <一个 数字> , '返回结果'  )]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C4">
+          <ExpressionDefinition>
+            <Text><![CDATA[util.educationFeeCalculate ( <一个 数字> ,'保单' 的基本信息 的机构代码 , '返回结果'  )]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C11">
+          <ExpressionDefinition>
+            <Text><![CDATA[util.placeEducationFeeCalculate ( <一个 数字> ,'保单' 的基本信息 的机构代码 , '返回结果'  )]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C6">
+          <ExpressionDefinition>
+            <Text><![CDATA[util.exhibitionCostCalculateNotLiao('返回结果',<一个 字符串> )]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C12">
+          <ExpressionDefinition>
+            <Text><![CDATA[util.monthAmountCountCalculate ( <一个 字符串> , '保单'  , '返回结果'  )]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C7">
+          <ExpressionDefinition>
+            <Text><![CDATA[util.taxBaseCalculateNotLiao ( <一个 字符串> , '保单' 的基本信息 的基本社会保险费  , '返回结果'  ,'保单' )]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C8">
+          <ExpressionDefinition>
+            <Text><![CDATA[util.personalIncomeTaxCalculate ( <一个 字符串> , <一个 数字> , <一个 字符串> , <一个 数字> , <一个 字符串> , '返回结果'  )]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C13">
+          <ExpressionDefinition>
+            <Text><![CDATA[util.monthAmountCalculate ( '保单'  , '返回结果'  ) 是 <一个 布尔类型>]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C9">
+          <ExpressionDefinition>
+            <Text><![CDATA[util.totalTaxCalculate('返回结果' ) 是 <一个 布尔类型>]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+        <ConditionDefinition Id="C10">
+          <ExpressionDefinition>
+            <Text><![CDATA[util.paidCommissionCalculate ( '返回结果'  ) 是 <一个 布尔类型>]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+      </ConditionDefinitions>
+      <ActionDefinitions>
+        <ActionDefinition Id="A0">
+          <ExpressionDefinition>
+            <Text><![CDATA[设置'返回结果'  的当前dsdjsf result 为<一个 数字>]]></Text>
+          </ExpressionDefinition>
+        </ActionDefinition>
+      </ActionDefinitions>
+    </Structure>
+    <Contents>
+      <Partition DefId="C0">
+        <Condition>
+          <Expression>
+            <Param><![CDATA["2130000000-河北省分公司"]]></Param>
+          </Expression>
+          <Partition DefId="C1">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[1.01]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA["<="]]></Param>
+                    <Param><![CDATA[100000]]></Param>
+                    <Param><![CDATA[0]]></Param>
+                  </Expression>
+                  <Partition DefId="C3">
+                    <Condition>
+                      <Expression>
+                        <Param><![CDATA[3.5]]></Param>
+                      </Expression>
+                      <Partition DefId="C4">
+                        <Condition>
+                          <Expression>
+                            <Param><![CDATA[1.5]]></Param>
+                          </Expression>
+                          <Partition DefId="C11">
+                            <Condition>
+                              <Expression>
+                                <Param><![CDATA[1]]></Param>
+                              </Expression>
+                              <Partition DefId="C6">
+                                <Condition>
+                                  <Expression>
+                                    <Param><![CDATA["0"]]></Param>
+                                  </Expression>
+                                  <Partition DefId="C12">
+                                    <Condition>
+                                      <Expression>
+                                        <Param><![CDATA["JL"]]></Param>
+                                      </Expression>
+                                      <Partition DefId="C7">
+                                        <Condition>
+                                          <Expression>
+                                            <Param><![CDATA["JL"]]></Param>
+                                          </Expression>
+                                          <Partition DefId="C8">
+                                            <Condition>
+                                              <Expression>
+                                                <Param><![CDATA["<="]]></Param>
+                                                <Param><![CDATA[36000]]></Param>
+                                                <Param><![CDATA["-"]]></Param>
+                                                <Param><![CDATA[0]]></Param>
+                                                <Param><![CDATA["0"]]></Param>
+                                              </Expression>
+                                              <Partition DefId="C13">
+                                                <Condition>
+                                                  <Expression>
+                                                    <Param><![CDATA[成立]]></Param>
+                                                  </Expression>
+                                                  <Partition DefId="C9">
+                                                    <Condition>
+                                                      <Expression>
+                                                        <Param><![CDATA[成立]]></Param>
+                                                      </Expression>
+                                                      <Partition DefId="C10">
+                                                        <Condition>
+                                                          <Expression>
+                                                            <Param><![CDATA[成立]]></Param>
+                                                          </Expression>
+                                                          <ActionSet>
+                                                            <Action DefId="A0">
+                                                              <Expression>
+                                                                <Param><![CDATA[0]]></Param>
+                                                              </Expression>
+                                                            </Action>
+                                                          </ActionSet>
+                                                        </Condition>
+                                                      </Partition>
+                                                    </Condition>
+                                                  </Partition>
+                                                </Condition>
+                                              </Partition>
+                                            </Condition>
+                                          </Partition>
+                                        </Condition>
+                                      </Partition>
+                                    </Condition>
+                                  </Partition>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["2130000000-河北省分公司"]]></Param>
+          </Expression>
+          <Partition DefId="C1">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[1.01]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[">"]]></Param>
+                    <Param><![CDATA[100000]]></Param>
+                    <Param><![CDATA[1]]></Param>
+                  </Expression>
+                  <Partition DefId="C3">
+                    <Condition>
+                      <Expression>
+                        <Param><![CDATA[3.5]]></Param>
+                      </Expression>
+                      <Partition DefId="C4">
+                        <Condition>
+                          <Expression>
+                            <Param><![CDATA[1.5]]></Param>
+                          </Expression>
+                          <Partition DefId="C11">
+                            <Condition>
+                              <Expression>
+                                <Param><![CDATA[1]]></Param>
+                              </Expression>
+                              <Partition DefId="C6">
+                                <Condition>
+                                  <Expression>
+                                    <Param><![CDATA["0"]]></Param>
+                                  </Expression>
+                                  <Partition DefId="C12">
+                                    <Condition>
+                                      <Expression>
+                                        <Param><![CDATA["JL"]]></Param>
+                                      </Expression>
+                                      <Partition DefId="C7">
+                                        <Condition>
+                                          <Expression>
+                                            <Param><![CDATA["JL"]]></Param>
+                                          </Expression>
+                                          <Partition DefId="C8">
+                                            <Condition>
+                                              <Expression>
+                                                <Param><![CDATA["<="]]></Param>
+                                                <Param><![CDATA[36000]]></Param>
+                                                <Param><![CDATA["-"]]></Param>
+                                                <Param><![CDATA[0]]></Param>
+                                                <Param><![CDATA["0"]]></Param>
+                                              </Expression>
+                                              <Partition DefId="C13">
+                                                <Condition>
+                                                  <Expression>
+                                                    <Param><![CDATA[成立]]></Param>
+                                                  </Expression>
+                                                  <Partition DefId="C9">
+                                                    <Condition>
+                                                      <Expression>
+                                                        <Param><![CDATA[成立]]></Param>
+                                                      </Expression>
+                                                      <Partition DefId="C10">
+                                                        <Condition>
+                                                          <Expression>
+                                                            <Param><![CDATA[成立]]></Param>
+                                                          </Expression>
+                                                          <ActionSet>
+                                                            <Action DefId="A0">
+                                                              <Expression>
+                                                                <Param><![CDATA[0]]></Param>
+                                                              </Expression>
+                                                            </Action>
+                                                          </ActionSet>
+                                                        </Condition>
+                                                      </Partition>
+                                                    </Condition>
+                                                  </Partition>
+                                                </Condition>
+                                              </Partition>
+                                            </Condition>
+                                          </Partition>
+                                        </Condition>
+                                      </Partition>
+                                    </Condition>
+                                  </Partition>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["2130000000-河北省分公司"]]></Param>
+          </Expression>
+          <Partition DefId="C1">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[1.01]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA["<="]]></Param>
+                    <Param><![CDATA[100000]]></Param>
+                    <Param><![CDATA[0]]></Param>
+                  </Expression>
+                  <Partition DefId="C3">
+                    <Condition>
+                      <Expression>
+                        <Param><![CDATA[3.5]]></Param>
+                      </Expression>
+                      <Partition DefId="C4">
+                        <Condition>
+                          <Expression>
+                            <Param><![CDATA[1.5]]></Param>
+                          </Expression>
+                          <Partition DefId="C11">
+                            <Condition>
+                              <Expression>
+                                <Param><![CDATA[1]]></Param>
+                              </Expression>
+                              <Partition DefId="C6">
+                                <Condition>
+                                  <Expression>
+                                    <Param><![CDATA["0"]]></Param>
+                                  </Expression>
+                                  <Partition DefId="C12">
+                                    <Condition>
+                                      <Expression>
+                                        <Param><![CDATA["JL"]]></Param>
+                                      </Expression>
+                                      <Partition DefId="C7">
+                                        <Condition>
+                                          <Expression>
+                                            <Param><![CDATA["JL"]]></Param>
+                                          </Expression>
+                                          <Partition DefId="C8">
+                                            <Condition>
+                                              <Expression>
+                                                <Param><![CDATA[">"]]></Param>
+                                                <Param><![CDATA[36000]]></Param>
+                                                <Param><![CDATA["<="]]></Param>
+                                                <Param><![CDATA[144000]]></Param>
+                                                <Param><![CDATA["1"]]></Param>
+                                              </Expression>
+                                              <Partition DefId="C13">
+                                                <Condition>
+                                                  <Expression>
+                                                    <Param><![CDATA[成立]]></Param>
+                                                  </Expression>
+                                                  <Partition DefId="C9">
+                                                    <Condition>
+                                                      <Expression>
+                                                        <Param><![CDATA[成立]]></Param>
+                                                      </Expression>
+                                                      <Partition DefId="C10">
+                                                        <Condition>
+                                                          <Expression>
+                                                            <Param><![CDATA[成立]]></Param>
+                                                          </Expression>
+                                                          <ActionSet>
+                                                            <Action DefId="A0">
+                                                              <Expression>
+                                                                <Param><![CDATA[0]]></Param>
+                                                              </Expression>
+                                                            </Action>
+                                                          </ActionSet>
+                                                        </Condition>
+                                                      </Partition>
+                                                    </Condition>
+                                                  </Partition>
+                                                </Condition>
+                                              </Partition>
+                                            </Condition>
+                                          </Partition>
+                                        </Condition>
+                                      </Partition>
+                                    </Condition>
+                                  </Partition>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["2130000000-河北省分公司"]]></Param>
+          </Expression>
+          <Partition DefId="C1">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[1.01]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[">"]]></Param>
+                    <Param><![CDATA[100000]]></Param>
+                    <Param><![CDATA[1]]></Param>
+                  </Expression>
+                  <Partition DefId="C3">
+                    <Condition>
+                      <Expression>
+                        <Param><![CDATA[3.5]]></Param>
+                      </Expression>
+                      <Partition DefId="C4">
+                        <Condition>
+                          <Expression>
+                            <Param><![CDATA[1.5]]></Param>
+                          </Expression>
+                          <Partition DefId="C11">
+                            <Condition>
+                              <Expression>
+                                <Param><![CDATA[1]]></Param>
+                              </Expression>
+                              <Partition DefId="C6">
+                                <Condition>
+                                  <Expression>
+                                    <Param><![CDATA["0"]]></Param>
+                                  </Expression>
+                                  <Partition DefId="C12">
+                                    <Condition>
+                                      <Expression>
+                                        <Param><![CDATA["JL"]]></Param>
+                                      </Expression>
+                                      <Partition DefId="C7">
+                                        <Condition>
+                                          <Expression>
+                                            <Param><![CDATA["JL"]]></Param>
+                                          </Expression>
+                                          <Partition DefId="C8">
+                                            <Condition>
+                                              <Expression>
+                                                <Param><![CDATA[">"]]></Param>
+                                                <Param><![CDATA[36000]]></Param>
+                                                <Param><![CDATA["<="]]></Param>
+                                                <Param><![CDATA[144000]]></Param>
+                                                <Param><![CDATA["1"]]></Param>
+                                              </Expression>
+                                              <Partition DefId="C13">
+                                                <Condition>
+                                                  <Expression>
+                                                    <Param><![CDATA[成立]]></Param>
+                                                  </Expression>
+                                                  <Partition DefId="C9">
+                                                    <Condition>
+                                                      <Expression>
+                                                        <Param><![CDATA[成立]]></Param>
+                                                      </Expression>
+                                                      <Partition DefId="C10">
+                                                        <Condition>
+                                                          <Expression>
+                                                            <Param><![CDATA[成立]]></Param>
+                                                          </Expression>
+                                                          <ActionSet>
+                                                            <Action DefId="A0">
+                                                              <Expression>
+                                                                <Param><![CDATA[0]]></Param>
+                                                              </Expression>
+                                                            </Action>
+                                                          </ActionSet>
+                                                        </Condition>
+                                                      </Partition>
+                                                    </Condition>
+                                                  </Partition>
+                                                </Condition>
+                                              </Partition>
+                                            </Condition>
+                                          </Partition>
+                                        </Condition>
+                                      </Partition>
+                                    </Condition>
+                                  </Partition>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["2130000000-河北省分公司"]]></Param>
+          </Expression>
+          <Partition DefId="C1">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[1.01]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA["<="]]></Param>
+                    <Param><![CDATA[100000]]></Param>
+                    <Param><![CDATA[0]]></Param>
+                  </Expression>
+                  <Partition DefId="C3">
+                    <Condition>
+                      <Expression>
+                        <Param><![CDATA[3.5]]></Param>
+                      </Expression>
+                      <Partition DefId="C4">
+                        <Condition>
+                          <Expression>
+                            <Param><![CDATA[1.5]]></Param>
+                          </Expression>
+                          <Partition DefId="C11">
+                            <Condition>
+                              <Expression>
+                                <Param><![CDATA[1]]></Param>
+                              </Expression>
+                              <Partition DefId="C6">
+                                <Condition>
+                                  <Expression>
+                                    <Param><![CDATA["0"]]></Param>
+                                  </Expression>
+                                  <Partition DefId="C12">
+                                    <Condition>
+                                      <Expression>
+                                        <Param><![CDATA["JL"]]></Param>
+                                      </Expression>
+                                      <Partition DefId="C7">
+                                        <Condition>
+                                          <Expression>
+                                            <Param><![CDATA["JL"]]></Param>
+                                          </Expression>
+                                          <Partition DefId="C8">
+                                            <Condition>
+                                              <Expression>
+                                                <Param><![CDATA[">"]]></Param>
+                                                <Param><![CDATA[144000]]></Param>
+                                                <Param><![CDATA["<="]]></Param>
+                                                <Param><![CDATA[300000]]></Param>
+                                                <Param><![CDATA["2"]]></Param>
+                                              </Expression>
+                                              <Partition DefId="C13">
+                                                <Condition>
+                                                  <Expression>
+                                                    <Param><![CDATA[成立]]></Param>
+                                                  </Expression>
+                                                  <Partition DefId="C9">
+                                                    <Condition>
+                                                      <Expression>
+                                                        <Param><![CDATA[成立]]></Param>
+                                                      </Expression>
+                                                      <Partition DefId="C10">
+                                                        <Condition>
+                                                          <Expression>
+                                                            <Param><![CDATA[成立]]></Param>
+                                                          </Expression>
+                                                          <ActionSet>
+                                                            <Action DefId="A0">
+                                                              <Expression>
+                                                                <Param><![CDATA[0]]></Param>
+                                                              </Expression>
+                                                            </Action>
+                                                          </ActionSet>
+                                                        </Condition>
+                                                      </Partition>
+                                                    </Condition>
+                                                  </Partition>
+                                                </Condition>
+                                              </Partition>
+                                            </Condition>
+                                          </Partition>
+                                        </Condition>
+                                      </Partition>
+                                    </Condition>
+                                  </Partition>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["2130000000-河北省分公司"]]></Param>
+          </Expression>
+          <Partition DefId="C1">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[1.01]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[">"]]></Param>
+                    <Param><![CDATA[100000]]></Param>
+                    <Param><![CDATA[1]]></Param>
+                  </Expression>
+                  <Partition DefId="C3">
+                    <Condition>
+                      <Expression>
+                        <Param><![CDATA[3.5]]></Param>
+                      </Expression>
+                      <Partition DefId="C4">
+                        <Condition>
+                          <Expression>
+                            <Param><![CDATA[1.5]]></Param>
+                          </Expression>
+                          <Partition DefId="C11">
+                            <Condition>
+                              <Expression>
+                                <Param><![CDATA[1]]></Param>
+                              </Expression>
+                              <Partition DefId="C6">
+                                <Condition>
+                                  <Expression>
+                                    <Param><![CDATA["0"]]></Param>
+                                  </Expression>
+                                  <Partition DefId="C12">
+                                    <Condition>
+                                      <Expression>
+                                        <Param><![CDATA["JL"]]></Param>
+                                      </Expression>
+                                      <Partition DefId="C7">
+                                        <Condition>
+                                          <Expression>
+                                            <Param><![CDATA["JL"]]></Param>
+                                          </Expression>
+                                          <Partition DefId="C8">
+                                            <Condition>
+                                              <Expression>
+                                                <Param><![CDATA[">"]]></Param>
+                                                <Param><![CDATA[144000]]></Param>
+                                                <Param><![CDATA["<="]]></Param>
+                                                <Param><![CDATA[300000]]></Param>
+                                                <Param><![CDATA["2"]]></Param>
+                                              </Expression>
+                                              <Partition DefId="C13">
+                                                <Condition>
+                                                  <Expression>
+                                                    <Param><![CDATA[成立]]></Param>
+                                                  </Expression>
+                                                  <Partition DefId="C9">
+                                                    <Condition>
+                                                      <Expression>
+                                                        <Param><![CDATA[成立]]></Param>
+                                                      </Expression>
+                                                      <Partition DefId="C10">
+                                                        <Condition>
+                                                          <Expression>
+                                                            <Param><![CDATA[成立]]></Param>
+                                                          </Expression>
+                                                          <ActionSet>
+                                                            <Action DefId="A0">
+                                                              <Expression>
+                                                                <Param><![CDATA[0]]></Param>
+                                                              </Expression>
+                                                            </Action>
+                                                          </ActionSet>
+                                                        </Condition>
+                                                      </Partition>
+                                                    </Condition>
+                                                  </Partition>
+                                                </Condition>
+                                              </Partition>
+                                            </Condition>
+                                          </Partition>
+                                        </Condition>
+                                      </Partition>
+                                    </Condition>
+                                  </Partition>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["2130000000-河北省分公司"]]></Param>
+          </Expression>
+          <Partition DefId="C1">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[1.01]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA["<="]]></Param>
+                    <Param><![CDATA[100000]]></Param>
+                    <Param><![CDATA[0]]></Param>
+                  </Expression>
+                  <Partition DefId="C3">
+                    <Condition>
+                      <Expression>
+                        <Param><![CDATA[3.5]]></Param>
+                      </Expression>
+                      <Partition DefId="C4">
+                        <Condition>
+                          <Expression>
+                            <Param><![CDATA[1.5]]></Param>
+                          </Expression>
+                          <Partition DefId="C11">
+                            <Condition>
+                              <Expression>
+                                <Param><![CDATA[1]]></Param>
+                              </Expression>
+                              <Partition DefId="C6">
+                                <Condition>
+                                  <Expression>
+                                    <Param><![CDATA["0"]]></Param>
+                                  </Expression>
+                                  <Partition DefId="C12">
+                                    <Condition>
+                                      <Expression>
+                                        <Param><![CDATA["JL"]]></Param>
+                                      </Expression>
+                                      <Partition DefId="C7">
+                                        <Condition>
+                                          <Expression>
+                                            <Param><![CDATA["JL"]]></Param>
+                                          </Expression>
+                                          <Partition DefId="C8">
+                                            <Condition>
+                                              <Expression>
+                                                <Param><![CDATA[">"]]></Param>
+                                                <Param><![CDATA[300000]]></Param>
+                                                <Param><![CDATA["<="]]></Param>
+                                                <Param><![CDATA[420000]]></Param>
+                                                <Param><![CDATA["3"]]></Param>
+                                              </Expression>
+                                              <Partition DefId="C13">
+                                                <Condition>
+                                                  <Expression>
+                                                    <Param><![CDATA[成立]]></Param>
+                                                  </Expression>
+                                                  <Partition DefId="C9">
+                                                    <Condition>
+                                                      <Expression>
+                                                        <Param><![CDATA[成立]]></Param>
+                                                      </Expression>
+                                                      <Partition DefId="C10">
+                                                        <Condition>
+                                                          <Expression>
+                                                            <Param><![CDATA[成立]]></Param>
+                                                          </Expression>
+                                                          <ActionSet>
+                                                            <Action DefId="A0">
+                                                              <Expression>
+                                                                <Param><![CDATA[0]]></Param>
+                                                              </Expression>
+                                                            </Action>
+                                                          </ActionSet>
+                                                        </Condition>
+                                                      </Partition>
+                                                    </Condition>
+                                                  </Partition>
+                                                </Condition>
+                                              </Partition>
+                                            </Condition>
+                                          </Partition>
+                                        </Condition>
+                                      </Partition>
+                                    </Condition>
+                                  </Partition>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["2130000000-河北省分公司"]]></Param>
+          </Expression>
+          <Partition DefId="C1">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[1.01]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[">"]]></Param>
+                    <Param><![CDATA[100000]]></Param>
+                    <Param><![CDATA[1]]></Param>
+                  </Expression>
+                  <Partition DefId="C3">
+                    <Condition>
+                      <Expression>
+                        <Param><![CDATA[3.5]]></Param>
+                      </Expression>
+                      <Partition DefId="C4">
+                        <Condition>
+                          <Expression>
+                            <Param><![CDATA[1.5]]></Param>
+                          </Expression>
+                          <Partition DefId="C11">
+                            <Condition>
+                              <Expression>
+                                <Param><![CDATA[1]]></Param>
+                              </Expression>
+                              <Partition DefId="C6">
+                                <Condition>
+                                  <Expression>
+                                    <Param><![CDATA["0"]]></Param>
+                                  </Expression>
+                                  <Partition DefId="C12">
+                                    <Condition>
+                                      <Expression>
+                                        <Param><![CDATA["JL"]]></Param>
+                                      </Expression>
+                                      <Partition DefId="C7">
+                                        <Condition>
+                                          <Expression>
+                                            <Param><![CDATA["JL"]]></Param>
+                                          </Expression>
+                                          <Partition DefId="C8">
+                                            <Condition>
+                                              <Expression>
+                                                <Param><![CDATA[">"]]></Param>
+                                                <Param><![CDATA[300000]]></Param>
+                                                <Param><![CDATA["<="]]></Param>
+                                                <Param><![CDATA[420000]]></Param>
+                                                <Param><![CDATA["3"]]></Param>
+                                              </Expression>
+                                              <Partition DefId="C13">
+                                                <Condition>
+                                                  <Expression>
+                                                    <Param><![CDATA[成立]]></Param>
+                                                  </Expression>
+                                                  <Partition DefId="C9">
+                                                    <Condition>
+                                                      <Expression>
+                                                        <Param><![CDATA[成立]]></Param>
+                                                      </Expression>
+                                                      <Partition DefId="C10">
+                                                        <Condition>
+                                                          <Expression>
+                                                            <Param><![CDATA[成立]]></Param>
+                                                          </Expression>
+                                                          <ActionSet>
+                                                            <Action DefId="A0">
+                                                              <Expression>
+                                                                <Param><![CDATA[0]]></Param>
+                                                              </Expression>
+                                                            </Action>
+                                                          </ActionSet>
+                                                        </Condition>
+                                                      </Partition>
+                                                    </Condition>
+                                                  </Partition>
+                                                </Condition>
+                                              </Partition>
+                                            </Condition>
+                                          </Partition>
+                                        </Condition>
+                                      </Partition>
+                                    </Condition>
+                                  </Partition>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["2130000000-河北省分公司"]]></Param>
+          </Expression>
+          <Partition DefId="C1">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[1.01]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA["<="]]></Param>
+                    <Param><![CDATA[100000]]></Param>
+                    <Param><![CDATA[0]]></Param>
+                  </Expression>
+                  <Partition DefId="C3">
+                    <Condition>
+                      <Expression>
+                        <Param><![CDATA[3.5]]></Param>
+                      </Expression>
+                      <Partition DefId="C4">
+                        <Condition>
+                          <Expression>
+                            <Param><![CDATA[1.5]]></Param>
+                          </Expression>
+                          <Partition DefId="C11">
+                            <Condition>
+                              <Expression>
+                                <Param><![CDATA[1]]></Param>
+                              </Expression>
+                              <Partition DefId="C6">
+                                <Condition>
+                                  <Expression>
+                                    <Param><![CDATA["0"]]></Param>
+                                  </Expression>
+                                  <Partition DefId="C12">
+                                    <Condition>
+                                      <Expression>
+                                        <Param><![CDATA["JL"]]></Param>
+                                      </Expression>
+                                      <Partition DefId="C7">
+                                        <Condition>
+                                          <Expression>
+                                            <Param><![CDATA["JL"]]></Param>
+                                          </Expression>
+                                          <Partition DefId="C8">
+                                            <Condition>
+                                              <Expression>
+                                                <Param><![CDATA[">"]]></Param>
+                                                <Param><![CDATA[420000]]></Param>
+                                                <Param><![CDATA["<="]]></Param>
+                                                <Param><![CDATA[660000]]></Param>
+                                                <Param><![CDATA["4"]]></Param>
+                                              </Expression>
+                                              <Partition DefId="C13">
+                                                <Condition>
+                                                  <Expression>
+                                                    <Param><![CDATA[成立]]></Param>
+                                                  </Expression>
+                                                  <Partition DefId="C9">
+                                                    <Condition>
+                                                      <Expression>
+                                                        <Param><![CDATA[成立]]></Param>
+                                                      </Expression>
+                                                      <Partition DefId="C10">
+                                                        <Condition>
+                                                          <Expression>
+                                                            <Param><![CDATA[成立]]></Param>
+                                                          </Expression>
+                                                          <ActionSet>
+                                                            <Action DefId="A0">
+                                                              <Expression>
+                                                                <Param><![CDATA[0]]></Param>
+                                                              </Expression>
+                                                            </Action>
+                                                          </ActionSet>
+                                                        </Condition>
+                                                      </Partition>
+                                                    </Condition>
+                                                  </Partition>
+                                                </Condition>
+                                              </Partition>
+                                            </Condition>
+                                          </Partition>
+                                        </Condition>
+                                      </Partition>
+                                    </Condition>
+                                  </Partition>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["2130000000-河北省分公司"]]></Param>
+          </Expression>
+          <Partition DefId="C1">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[1.01]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[">"]]></Param>
+                    <Param><![CDATA[100000]]></Param>
+                    <Param><![CDATA[1]]></Param>
+                  </Expression>
+                  <Partition DefId="C3">
+                    <Condition>
+                      <Expression>
+                        <Param><![CDATA[3.5]]></Param>
+                      </Expression>
+                      <Partition DefId="C4">
+                        <Condition>
+                          <Expression>
+                            <Param><![CDATA[1.5]]></Param>
+                          </Expression>
+                          <Partition DefId="C11">
+                            <Condition>
+                              <Expression>
+                                <Param><![CDATA[1]]></Param>
+                              </Expression>
+                              <Partition DefId="C6">
+                                <Condition>
+                                  <Expression>
+                                    <Param><![CDATA["0"]]></Param>
+                                  </Expression>
+                                  <Partition DefId="C12">
+                                    <Condition>
+                                      <Expression>
+                                        <Param><![CDATA["JL"]]></Param>
+                                      </Expression>
+                                      <Partition DefId="C7">
+                                        <Condition>
+                                          <Expression>
+                                            <Param><![CDATA["JL"]]></Param>
+                                          </Expression>
+                                          <Partition DefId="C8">
+                                            <Condition>
+                                              <Expression>
+                                                <Param><![CDATA[">"]]></Param>
+                                                <Param><![CDATA[420000]]></Param>
+                                                <Param><![CDATA["<="]]></Param>
+                                                <Param><![CDATA[660000]]></Param>
+                                                <Param><![CDATA["4"]]></Param>
+                                              </Expression>
+                                              <Partition DefId="C13">
+                                                <Condition>
+                                                  <Expression>
+                                                    <Param><![CDATA[成立]]></Param>
+                                                  </Expression>
+                                                  <Partition DefId="C9">
+                                                    <Condition>
+                                                      <Expression>
+                                                        <Param><![CDATA[成立]]></Param>
+                                                      </Expression>
+                                                      <Partition DefId="C10">
+                                                        <Condition>
+                                                          <Expression>
+                                                            <Param><![CDATA[成立]]></Param>
+                                                          </Expression>
+                                                          <ActionSet>
+                                                            <Action DefId="A0">
+                                                              <Expression>
+                                                                <Param><![CDATA[0]]></Param>
+                                                              </Expression>
+                                                            </Action>
+                                                          </ActionSet>
+                                                        </Condition>
+                                                      </Partition>
+                                                    </Condition>
+                                                  </Partition>
+                                                </Condition>
+                                              </Partition>
+                                            </Condition>
+                                          </Partition>
+                                        </Condition>
+                                      </Partition>
+                                    </Condition>
+                                  </Partition>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["2130000000-河北省分公司"]]></Param>
+          </Expression>
+          <Partition DefId="C1">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[1.01]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA["<="]]></Param>
+                    <Param><![CDATA[100000]]></Param>
+                    <Param><![CDATA[0]]></Param>
+                  </Expression>
+                  <Partition DefId="C3">
+                    <Condition>
+                      <Expression>
+                        <Param><![CDATA[3.5]]></Param>
+                      </Expression>
+                      <Partition DefId="C4">
+                        <Condition>
+                          <Expression>
+                            <Param><![CDATA[1.5]]></Param>
+                          </Expression>
+                          <Partition DefId="C11">
+                            <Condition>
+                              <Expression>
+                                <Param><![CDATA[1]]></Param>
+                              </Expression>
+                              <Partition DefId="C6">
+                                <Condition>
+                                  <Expression>
+                                    <Param><![CDATA["0"]]></Param>
+                                  </Expression>
+                                  <Partition DefId="C12">
+                                    <Condition>
+                                      <Expression>
+                                        <Param><![CDATA["JL"]]></Param>
+                                      </Expression>
+                                      <Partition DefId="C7">
+                                        <Condition>
+                                          <Expression>
+                                            <Param><![CDATA["JL"]]></Param>
+                                          </Expression>
+                                          <Partition DefId="C8">
+                                            <Condition>
+                                              <Expression>
+                                                <Param><![CDATA[">"]]></Param>
+                                                <Param><![CDATA[660000]]></Param>
+                                                <Param><![CDATA["<="]]></Param>
+                                                <Param><![CDATA[960000]]></Param>
+                                                <Param><![CDATA["5"]]></Param>
+                                              </Expression>
+                                              <Partition DefId="C13">
+                                                <Condition>
+                                                  <Expression>
+                                                    <Param><![CDATA[成立]]></Param>
+                                                  </Expression>
+                                                  <Partition DefId="C9">
+                                                    <Condition>
+                                                      <Expression>
+                                                        <Param><![CDATA[成立]]></Param>
+                                                      </Expression>
+                                                      <Partition DefId="C10">
+                                                        <Condition>
+                                                          <Expression>
+                                                            <Param><![CDATA[成立]]></Param>
+                                                          </Expression>
+                                                          <ActionSet>
+                                                            <Action DefId="A0">
+                                                              <Expression>
+                                                                <Param><![CDATA[0]]></Param>
+                                                              </Expression>
+                                                            </Action>
+                                                          </ActionSet>
+                                                        </Condition>
+                                                      </Partition>
+                                                    </Condition>
+                                                  </Partition>
+                                                </Condition>
+                                              </Partition>
+                                            </Condition>
+                                          </Partition>
+                                        </Condition>
+                                      </Partition>
+                                    </Condition>
+                                  </Partition>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["2130000000-河北省分公司"]]></Param>
+          </Expression>
+          <Partition DefId="C1">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[1.01]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[">"]]></Param>
+                    <Param><![CDATA[100000]]></Param>
+                    <Param><![CDATA[1]]></Param>
+                  </Expression>
+                  <Partition DefId="C3">
+                    <Condition>
+                      <Expression>
+                        <Param><![CDATA[3.5]]></Param>
+                      </Expression>
+                      <Partition DefId="C4">
+                        <Condition>
+                          <Expression>
+                            <Param><![CDATA[1.5]]></Param>
+                          </Expression>
+                          <Partition DefId="C11">
+                            <Condition>
+                              <Expression>
+                                <Param><![CDATA[1]]></Param>
+                              </Expression>
+                              <Partition DefId="C6">
+                                <Condition>
+                                  <Expression>
+                                    <Param><![CDATA["0"]]></Param>
+                                  </Expression>
+                                  <Partition DefId="C12">
+                                    <Condition>
+                                      <Expression>
+                                        <Param><![CDATA["JL"]]></Param>
+                                      </Expression>
+                                      <Partition DefId="C7">
+                                        <Condition>
+                                          <Expression>
+                                            <Param><![CDATA["JL"]]></Param>
+                                          </Expression>
+                                          <Partition DefId="C8">
+                                            <Condition>
+                                              <Expression>
+                                                <Param><![CDATA[">"]]></Param>
+                                                <Param><![CDATA[660000]]></Param>
+                                                <Param><![CDATA["<="]]></Param>
+                                                <Param><![CDATA[960000]]></Param>
+                                                <Param><![CDATA["5"]]></Param>
+                                              </Expression>
+                                              <Partition DefId="C13">
+                                                <Condition>
+                                                  <Expression>
+                                                    <Param><![CDATA[成立]]></Param>
+                                                  </Expression>
+                                                  <Partition DefId="C9">
+                                                    <Condition>
+                                                      <Expression>
+                                                        <Param><![CDATA[成立]]></Param>
+                                                      </Expression>
+                                                      <Partition DefId="C10">
+                                                        <Condition>
+                                                          <Expression>
+                                                            <Param><![CDATA[成立]]></Param>
+                                                          </Expression>
+                                                          <ActionSet>
+                                                            <Action DefId="A0">
+                                                              <Expression>
+                                                                <Param><![CDATA[0]]></Param>
+                                                              </Expression>
+                                                            </Action>
+                                                          </ActionSet>
+                                                        </Condition>
+                                                      </Partition>
+                                                    </Condition>
+                                                  </Partition>
+                                                </Condition>
+                                              </Partition>
+                                            </Condition>
+                                          </Partition>
+                                        </Condition>
+                                      </Partition>
+                                    </Condition>
+                                  </Partition>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["2130000000-河北省分公司"]]></Param>
+          </Expression>
+          <Partition DefId="C1">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[1.01]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA["<="]]></Param>
+                    <Param><![CDATA[100000]]></Param>
+                    <Param><![CDATA[0]]></Param>
+                  </Expression>
+                  <Partition DefId="C3">
+                    <Condition>
+                      <Expression>
+                        <Param><![CDATA[3.5]]></Param>
+                      </Expression>
+                      <Partition DefId="C4">
+                        <Condition>
+                          <Expression>
+                            <Param><![CDATA[1.5]]></Param>
+                          </Expression>
+                          <Partition DefId="C11">
+                            <Condition>
+                              <Expression>
+                                <Param><![CDATA[1]]></Param>
+                              </Expression>
+                              <Partition DefId="C6">
+                                <Condition>
+                                  <Expression>
+                                    <Param><![CDATA["0"]]></Param>
+                                  </Expression>
+                                  <Partition DefId="C12">
+                                    <Condition>
+                                      <Expression>
+                                        <Param><![CDATA["JL"]]></Param>
+                                      </Expression>
+                                      <Partition DefId="C7">
+                                        <Condition>
+                                          <Expression>
+                                            <Param><![CDATA["JL"]]></Param>
+                                          </Expression>
+                                          <Partition DefId="C8">
+                                            <Condition>
+                                              <Expression>
+                                                <Param><![CDATA[">"]]></Param>
+                                                <Param><![CDATA[960000]]></Param>
+                                                <Param><![CDATA["-"]]></Param>
+                                                <Param><![CDATA[0]]></Param>
+                                                <Param><![CDATA["6"]]></Param>
+                                              </Expression>
+                                              <Partition DefId="C13">
+                                                <Condition>
+                                                  <Expression>
+                                                    <Param><![CDATA[成立]]></Param>
+                                                  </Expression>
+                                                  <Partition DefId="C9">
+                                                    <Condition>
+                                                      <Expression>
+                                                        <Param><![CDATA[成立]]></Param>
+                                                      </Expression>
+                                                      <Partition DefId="C10">
+                                                        <Condition>
+                                                          <Expression>
+                                                            <Param><![CDATA[成立]]></Param>
+                                                          </Expression>
+                                                          <ActionSet>
+                                                            <Action DefId="A0">
+                                                              <Expression>
+                                                                <Param><![CDATA[0]]></Param>
+                                                              </Expression>
+                                                            </Action>
+                                                          </ActionSet>
+                                                        </Condition>
+                                                      </Partition>
+                                                    </Condition>
+                                                  </Partition>
+                                                </Condition>
+                                              </Partition>
+                                            </Condition>
+                                          </Partition>
+                                        </Condition>
+                                      </Partition>
+                                    </Condition>
+                                  </Partition>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["2130000000-河北省分公司"]]></Param>
+          </Expression>
+          <Partition DefId="C1">
+            <Condition>
+              <Expression>
+                <Param><![CDATA[1.01]]></Param>
+              </Expression>
+              <Partition DefId="C2">
+                <Condition>
+                  <Expression>
+                    <Param><![CDATA[">"]]></Param>
+                    <Param><![CDATA[100000]]></Param>
+                    <Param><![CDATA[1]]></Param>
+                  </Expression>
+                  <Partition DefId="C3">
+                    <Condition>
+                      <Expression>
+                        <Param><![CDATA[3.5]]></Param>
+                      </Expression>
+                      <Partition DefId="C4">
+                        <Condition>
+                          <Expression>
+                            <Param><![CDATA[1.5]]></Param>
+                          </Expression>
+                          <Partition DefId="C11">
+                            <Condition>
+                              <Expression>
+                                <Param><![CDATA[1]]></Param>
+                              </Expression>
+                              <Partition DefId="C6">
+                                <Condition>
+                                  <Expression>
+                                    <Param><![CDATA["0"]]></Param>
+                                  </Expression>
+                                  <Partition DefId="C12">
+                                    <Condition>
+                                      <Expression>
+                                        <Param><![CDATA["JL"]]></Param>
+                                      </Expression>
+                                      <Partition DefId="C7">
+                                        <Condition>
+                                          <Expression>
+                                            <Param><![CDATA["JL"]]></Param>
+                                          </Expression>
+                                          <Partition DefId="C8">
+                                            <Condition>
+                                              <Expression>
+                                                <Param><![CDATA[">"]]></Param>
+                                                <Param><![CDATA[960000]]></Param>
+                                                <Param><![CDATA["-"]]></Param>
+                                                <Param><![CDATA[0]]></Param>
+                                                <Param><![CDATA["6"]]></Param>
+                                              </Expression>
+                                              <Partition DefId="C13">
+                                                <Condition>
+                                                  <Expression>
+                                                    <Param><![CDATA[成立]]></Param>
+                                                  </Expression>
+                                                  <Partition DefId="C9">
+                                                    <Condition>
+                                                      <Expression>
+                                                        <Param><![CDATA[成立]]></Param>
+                                                      </Expression>
+                                                      <Partition DefId="C10">
+                                                        <Condition>
+                                                          <Expression>
+                                                            <Param><![CDATA[成立]]></Param>
+                                                          </Expression>
+                                                          <ActionSet>
+                                                            <Action DefId="A0">
+                                                              <Expression>
+                                                                <Param><![CDATA[0]]></Param>
+                                                              </Expression>
+                                                            </Action>
+                                                          </ActionSet>
+                                                        </Condition>
+                                                      </Partition>
+                                                    </Condition>
+                                                  </Partition>
+                                                </Condition>
+                                              </Partition>
+                                            </Condition>
+                                          </Partition>
+                                        </Condition>
+                                      </Partition>
+                                    </Condition>
+                                  </Partition>
+                                </Condition>
+                              </Partition>
+                            </Condition>
+                          </Partition>
+                        </Condition>
+                      </Partition>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <Partition DefId="C3">
+            <Condition>
+              <Expression/>
+              <Partition DefId="C4">
+                <Condition>
+                  <Expression/>
+                  <Partition DefId="C13">
+                    <Condition>
+                      <Expression/>
+                      <ActionSet>
+                        <Action DefId="A0">
+                          <Expression/>
+                        </Action>
+                      </ActionSet>
+                    </Condition>
+                  </Partition>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <Partition DefId="C4">
+            <Condition>
+              <Expression/>
+              <Partition DefId="C13">
+                <Condition>
+                  <Expression/>
+                  <ActionSet>
+                    <Action DefId="A0">
+                      <Expression/>
+                    </Action>
+                  </ActionSet>
+                </Condition>
+              </Partition>
+            </Condition>
+          </Partition>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression/>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+      </Partition>
+    </Contents>
+  </Body>
+  <Resources DefaultLocale="zh_CN">
+    <ResourceSet Locale="zh_CN">
+      <Data Name="/0/0/0/0/0/0/0/0/0/0/0/0/0/A#Height"><![CDATA[20]]></Data>
+      <Data Name="Definitions(A0)#HeaderText"><![CDATA[设置参数]]></Data>
+      <Data Name="Definitions(A0)#Width"><![CDATA[71]]></Data>
+      <Data Name="Definitions(C0)#HeaderText"><![CDATA[机构]]></Data>
+      <Data Name="Definitions(C0)#Width"><![CDATA[259]]></Data>
+      <Data Name="Definitions(C1)#HeaderText"><![CDATA[手续费收入（不含税）:手续费收入（含税） /]]></Data>
+      <Data Name="Definitions(C1)#Width"><![CDATA[75]]></Data>
+      <Data Name="Definitions(C10)#HeaderText"><![CDATA[实付手续费计算公式:手续费收入（含税） - 税金合计]]></Data>
+      <Data Name="Definitions(C10)#Width"><![CDATA[104]]></Data>
+      <Data Name="Definitions(C11)#HeaderText"><![CDATA[地方教育费附加]]></Data>
+      <Data Name="Definitions(C11)#Width"><![CDATA[60]]></Data>
+      <Data Name="Definitions(C12)#HeaderText"><![CDATA[当月计税收入额]]></Data>
+      <Data Name="Definitions(C12)#Width"><![CDATA[118]]></Data>
+      <Data Name="Definitions(C13)#HeaderText"><![CDATA[当月个税计算]]></Data>
+      <Data Name="Definitions(C13)#Width"><![CDATA[110]]></Data>
+      <Data Name="Definitions(C2)#HeaderText"><![CDATA[增值税计算]]></Data>
+      <Data Name="Definitions(C2)#Width"><![CDATA[257]]></Data>
+      <Data Name="Definitions(C2)[0]#HeaderText"><![CDATA[运算符]]></Data>
+      <Data Name="Definitions(C2)[1]#HeaderText"><![CDATA[取值]]></Data>
+      <Data Name="Definitions(C2)[2]#HeaderText"><![CDATA[计算公式:手续费收入（不含税） * (%)]]></Data>
+      <Data Name="Definitions(C3)#HeaderText"><![CDATA[城建税计算:增值税 * (%)]]></Data>
+      <Data Name="Definitions(C3)#Width"><![CDATA[63]]></Data>
+      <Data Name="Definitions(C4)#HeaderText"><![CDATA[教育费及附加计算:增值税 *  (%)]]></Data>
+      <Data Name="Definitions(C4)#Width"><![CDATA[60]]></Data>
+      <Data Name="Definitions(C6)#HeaderText"><![CDATA[展业成本:(手续费收入（不含税）- 增值税 - 城建税 - 教育费及附加 - 地方教育费及附加) * 40%]]></Data>
+      <Data Name="Definitions(C6)#Width"><![CDATA[61]]></Data>
+      <Data Name="Definitions(C7)#HeaderText"><![CDATA[个税基税计算公式]]></Data>
+      <Data Name="Definitions(C7)#Width"><![CDATA[87]]></Data>
+      <Data Name="Definitions(C8)#HeaderText"><![CDATA[今年累计个税计算]]></Data>
+      <Data Name="Definitions(C8)#Width"><![CDATA[543]]></Data>
+      <Data Name="Definitions(C8)[0]#HeaderText"><![CDATA[比较符]]></Data>
+      <Data Name="Definitions(C8)[1]#HeaderText"><![CDATA[范围]]></Data>
+      <Data Name="Definitions(C8)[2]#HeaderText"><![CDATA[比较符]]></Data>
+      <Data Name="Definitions(C8)[3]#HeaderText"><![CDATA[范围]]></Data>
+      <Data Name="Definitions(C8)[4]#HeaderText"><![CDATA[计算公式标识]]></Data>
+      <Data Name="Definitions(C9)#HeaderText"><![CDATA[税金合计计算:增值税 + 城建税 + 教育费及附加 + 地方教育费及附加 + 个税 ]]></Data>
+      <Data Name="Definitions(C9)#Width"><![CDATA[104]]></Data>
+    </ResourceSet>
+  </Resources>
+</DT></definition>
+</ilog.rules.studio.model.dt:DecisionTable>

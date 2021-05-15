@@ -9,7 +9,7 @@ import java.util.List;
 public class DataTableHead {
     private Integer width;
 
-    private String[] headerTextList = new String[6];
+    private String[] headerTextList = new String[12];
 
     private String definitionsId;
 }

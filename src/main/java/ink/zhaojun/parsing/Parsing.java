@@ -23,7 +23,6 @@ public class Parsing {
         SAXReader saxReader = new SAXReader();
 
         Document document = saxReader.read(new File(path));
-        log.info("获取文件：{}", path);
 
         Element root = document.getRootElement();
 
@@ -102,6 +101,10 @@ public class Parsing {
                 }
             }
         }
+
+        // 校验填充头信息
+        checkHead(dataTableHeadHashMap);
+
         log.info("解析表头结束");
         // 解析表头 --end
 
@@ -115,6 +118,19 @@ public class Parsing {
         result.setDataTableHeadHashMap(sortHeadMap);
         result.setContentsList(contentsList);
         return result;
+    }
+
+
+    /**
+     * 检查头信息
+     * @param dataTableHeadHashMap
+     */
+    private void checkHead(Map<String, DataTableHead> dataTableHeadHashMap) {
+        dataTableHeadHashMap.forEach((id,tableHead) -> {
+            if(Objects.isNull(tableHead.getHeaderTextList()[0])){
+                tableHead.getHeaderTextList()[0] = id;
+            }
+        });
     }
 
     /**
@@ -197,6 +213,8 @@ public class Parsing {
             return new StringBuilder(SymbolEnum.EQ.getSymbol());
         }else if(SymbolEnum.NOT_IN.getChinese().equals(formattingStr(text))){
             return new StringBuilder(SymbolEnum.NOT_IN.getSymbol());
+        }else if(SymbolEnum.NOT_START_WITH.getChinese().equals(formattingStr(text))){
+            return new StringBuilder(SymbolEnum.NOT_START_WITH.getSymbol());
         }else {
             return new StringBuilder(text);
         }

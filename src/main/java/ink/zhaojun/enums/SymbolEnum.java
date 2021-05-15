@@ -12,7 +12,8 @@ public enum SymbolEnum {
     ELT("<一个 数字>小于等于<一个 数字>", "≤"),
     EGT("<一个 数字>大于等于<一个 数字>", "≥"),
     EQ("<一个 数字>等于<一个 数字>", "="),
-    NOT_IN("<一个 对象>不是<一些 对象>中的一个","!in");
+    NOT_IN("<一个 对象>不是<一些 对象>中的一个","!in"),
+    NOT_START_WITH("<一个 字符串>不以<一个 字符串>开始","!starts with ");
 
     private String chinese;
 
